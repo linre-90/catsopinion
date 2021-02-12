@@ -4,8 +4,7 @@ const request = require("request");
 const dotenv = require("dotenv");
 const MongoClient = require("mongodb").MongoClient;
 const { ObjectID } = require("bson");
-const fs = require("fs");
-const https = require("https");
+//const fs = require("fs");
 const ejs = require("ejs").renderFile;
 const Keygrip = require("keygrip");
 const path = require("path");
@@ -22,10 +21,6 @@ const csurf = require("csurf");
 const cookieSession = require("cookie-session");
 const joi = require("joi");
 const regex = /[^<>\/\":;$!'\;={}&]+$/;
-
-// ssl/tsl
-var privateKey  = fs.readFileSync(process.env.SSL_PRIVATE_KEY);
-var certificate = fs.readFileSync(process.env.SSL_CERTIFICATE);
 
 // joi schemas
 const testNumberSChema = joi.number().max(5);
@@ -127,7 +122,6 @@ app.set("views", path.join(__dirname, "views"));
 app.set("html", path.join(__dirname, "html"));
 app.engine("html", ejs);
 app.set("view engine", "html");
-app.set('trust proxy', 1);
 
 // mmongodb connection
 const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
@@ -236,6 +230,7 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
                     res.sendStatus(422);
             }
         }else{
+            console.log(responseObject.success);
             res.sendStatus(401)
         }
     });  
@@ -313,8 +308,7 @@ const getCatsAnalysis = async (dataObject) =>{
     return catsOpinion;
 }
 
-
-const httpsServer = https.createServer({key:privateKey, cert:certificate}, app);
-httpsServer.listen(process.env.PORT || 80, () => {
-    console.log(`Server running:${process.env.PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Example app listening at http://localhost:${process.env.PORT}`)
 });
+
