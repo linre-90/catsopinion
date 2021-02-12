@@ -24,8 +24,8 @@ const joi = require("joi");
 const regex = /[^<>\/\":;$!'\;={}&]+$/;
 
 // ssl/tsl
-var privateKey  = fs.readFileSync("./key.pem");
-var certificate = fs.readFileSync("./cert.pem");
+var privateKey  = fs.readFileSync(process.env.SSL_PRIVATE_KEY);
+var certificate = fs.readFileSync(process.env.SSL_CERTIFICATE);
 
 // joi schemas
 const testNumberSChema = joi.number().max(5);
