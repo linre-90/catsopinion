@@ -315,6 +315,6 @@ const getCatsAnalysis = async (dataObject) =>{
 
 
 const httpsServer = https.createServer({key:privateKey, cert:certificate}, app);
-httpsServer.listen(process.env.NODE_PORT, () => {
-    console.log(`Server running:${process.env.NODE_PORT}`);
+httpsServer.listen(process.env.PORT, () => {
+    console.log(`Server running:${process.env.PORT}`);
 });
