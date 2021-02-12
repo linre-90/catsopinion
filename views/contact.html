@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Todo recapcha and adsense-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cats opinion!</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--Style & fonts-->
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='contact.css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <div class="navSection">
+        <div class="col-6" id="catNav">
+            <i class="fa fa-cat navIcon" style="font-size: 4rem; margin-right: -2rem;"></i>
+        </div>
+        <div  class="col-6" id="navLinks">
+            <a href="/">Main</a>
+            <a href="blog" >Blog</a>
+            <a class="navItemPagePointer" href="contact">Contact  <i class="fas fa-check-circle"></i></a>
+            <a href="funzone">Fun zone</a>
+        </div>
+    </div>
+    <div class="topHeader" >
+        <div>
+            <h1>Cats Opinion</h1>
+            <h3>The only opinion cat owners need!</h1>
+        </div>
+    </div>
+    <div class="flexRow">
+        <h1 style="text-align: center;" class="col-12"> Contact</h1>
+    </div>
+    <div class="flexRow">
+        <h3 style="text-align: center;" class="col-12"> Send questions for vilma or other feedback about web site. Also you can rebort bugs broken links etc. </h3>
+    </div>
+    
+    <div class="flexRow">
+        
+        <div class="firstContentRow col-6" id="resultSectionQuestion">
+            <form action="contact" method="POST">
+                <input type="hidden" name="_csrf" value=<%=csrfToken%> >
+                <div class="marginBottom">
+                    <p>* marked items are required</p>
+                    <div class="col-5 DIVStepOne">
+                        <label for="headline">Headline: *</label>
+                    </div>
+                    <div class="col-5 DIVStepOne">
+                        <input name="headLine" class="col-12" id="headline" type="text" maxlength="20" placeholder="max length 20 char" required>  
+                    </div>
+                </div>
+                <div class="marginBottom">
+                    <div class="col-5 DIVStepOne">
+                        <label for="type">Type of feedback: *</label>
+                    </div>
+                    <div class="col-5 DIVStepOne">
+                        <select name="type" class="col-12" name="" id="type" required>
+                            <option disabled selected value="">-- select a type</option>
+                            <option value="bug">Bug report</option>
+                            <option value="question">Question</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="marginBottom">
+                    <div class="col-5 DIVStepOne" >
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="col-5 DIVStepOne" >
+                        <input name="email" class="col-12" id="email" type="email" maxlength="254" placeholder="fill only if you want response">  
+                    </div>
+                </div>
+                <div class="marginBottom">
+                    <div class="col-5 DIVStepOne alignTop" >
+                        <label  for="message">Your message: *</label>
+                    </div>
+                    <div class="col-5 DIVStepOne">
+                        <textarea name="message" style="resize: none;" class="col-12" id="message" type="text" minlength="20" maxlength="400" rows="10"  required></textarea>
+                    </div>
+                </div>
+                <div class="col-11 flex">
+                    <div id="recaptchaWrapper" class="col-5">
+                        <div class="g-recaptcha" data-sitekey="6LdnylQaAAAAANz38pkiwOYPOI31FeMAWPiHfMVh"></div>
+                    </div>
+                    <div class="col-4 submitDiv" >
+                        <button id="subMitFormBtn" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+    </div>
+
+        <div class="ad col-3">
+            <p style="font-style: italic;">ad place holder</p>
+            <img class="addSize" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80" alt="">
+        </div>
+    </div>
+    <div class="credits flexRow">
+        <div class="col-4">
+            <div >
+                <h4><i class="fa fa-sitemap"></i> Site map <i class="fa fa-sitemap"></i></h4>
+                <p><a class="siteMapLink" href="/">Main</a></p>
+                <p><a class="siteMapLink" href="blog">Blog</a></p>
+                <p><a class="siteMapLink" href="contact">Contact</a></p>
+                <p><a class="siteMapLink" href="funzone">Fun zone</a></p>
+                <p><a class="siteMapLink" href="privacyPolicy">Privacy policy</a></p>
+            </div>
+            <div class="social">
+                <h4><i class="far fa-bell"></i> Share this page on social media! <i class="far fa-bell"></i></h4>
+                <!--Twitter some btn --> 
+                <a href="https://twitter.com/intent/tweet?button_hashtag=tweet&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-text="Hi! Check out this site!!!" data-url="https://catsopinion.com" data-show-count="false">Tweet #tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <div class="socialMediaSeperator"></div>
+                <!--Facebook some btn --> 
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v9.0" nonce="KPvERDBF"></script>
+                <div class="fb-share-button" data-href="https://catsopinion.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcatsopinion.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Jaa</a></div>
+                <br>
+                <div class="socialMediaSeperator"></div>
+                <!--Linked in some btn --> 
+                <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+                <script type="IN/Share" data-url="https://catsopinion.com/"></script>
+            </div>
+        </div>
+        <div class="col-4">
+            <p>All rights reserved Juho Lindemark</p>
+            <div>(country flag)Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <div>Other icons by FontAwesome: <a href="https://fontawesome.com/">https://fontawesome.com/</a></div>
+            <div>
+                <p>Images from unsplash: <a href="https://unsplash.com/images/stock">https://unsplash.com/images/stock</a></p>
+                <p>Check following persons work: </p>
+                <ul style="list-style: none;">
+                    <li><a href="https://unsplash.com/@cedric_photography">https://unsplash.com/@cedric_photography</a></li>
+                    <li><a href="https://unsplash.com/@madeyes">https://unsplash.com/@madeyes</a></li>
+                    <li><a href="https://unsplash.com/@miklevasilyev">https://unsplash.com/@miklevasilyev</a></li>
+                    <li><a href="https://unsplash.com/@serejaris">https://unsplash.com/@serejaris</a></li>
+                    <li><a href="https://unsplash.com/@_javardh_001">https://unsplash.com/@_javardh_001</a></li>
+                    <li><a href="https://unsplash.com/@zane404">https://unsplash.com/@zane404</a></li>
+                </ul>    
+            </div>
+        </div>   
+    </div>
+    <div class=reportNTop>
+        <button id="backToTopBtn"><i class="fa fa-arrow-up"></i></button>
+        <a href="contact" id="reportBugBTN"><i class="fa fa-exclamation-triangle"></i><p style="font-size: 10px; padding: 0; margin: 0;">REPORT A BUG</p></a>
+    </div>
+    <!--SCripts-->
+    <script src='scrollNbackTopBtn.js'></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?theme=flying&thirdparty=1&always=1&scrolling=1&showPolicyLink=1&privacyPage=https%3A%2F%2Fcatsopinion.com%2FprivacyPolicy"></script>
+</body>
+</html>

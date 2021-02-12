@@ -1,0 +1,335 @@
+/*.ad currently display none, when url make add there*/
+
+:root{
+    --img1: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1472491235688-bdc81a63246e.jpg);
+    --img2: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1511275539165-cc46b1ee89bf.jpg);
+    --img3: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1535696588143-945e1379f1b0.jpg);
+    --img4: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1547045662-e5a75e7238c2.jpg);
+    --img5: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1559624989-7b9303bd9792.jpg);
+    --img6: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1574158622682-e40e69881006.jpg);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #afd5aa;
+    margin: 0;
+}
+
+
+h1,h2, .topHeader h3{
+    font-family: "dancing Script";
+}
+
+h3, h4, p, label, a{
+    font-family: "Lato", "sans-serif";
+}
+
+a, a:visited{
+    color: black;
+}
+
+ul{
+    padding-inline-start: 0;
+    list-style: none; 
+}
+
+.content ul li span{
+    margin-right: 1em;
+
+}
+
+a{
+    cursor: pointer;
+}
+
+a:hover{
+    color: #a69f98;
+}
+
+.imgIcon{
+    width: 3%;
+    height: auto;
+}
+
+.navLogo{
+    font-size: 4rem; 
+    margin-right: -2rem;
+}
+
+
+.navSection{
+    background-color: #5c5346;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navSection a{
+    background-color:  #a69f98;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    max-height: 2em;
+    text-decoration: none;
+}
+
+.navSection a:hover {
+    background-color: #8c6057;
+    cursor: pointer;
+}
+
+.navItemPagePointer{
+    font-weight: bold;
+}
+
+#navLinks, #catNav{
+    text-align: right;
+}
+
+.topHeader{
+    animation-name: change;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    background-color: #8c6057;
+    display: flex;
+    background-image: var(--img1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    background-position: left;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    justify-content: flex-end;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+@keyframes change{
+    0%{background-image: var(--img1);}
+    16.6%{background-image: var(--img2);}
+    33.2%{background-image: var(--img3);}
+    49.8%{background-image: var(--img4);}
+    66.4%{background-image: var(--img5);}
+    83%{background-image: var(--img6);}
+}
+
+.topHeader div{
+    display: flex;
+    background-color: #a69f98;
+    margin-right: 20.5rem;
+    padding:1rem;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px #5c5346;
+}
+
+.topHeader div h1{
+    padding: 5px;
+    font-size: 2.5em;
+}
+
+.topHeader div h3{
+    padding: 5px;
+    font-size: 1.5em;
+    margin-top: 60px;
+    
+}
+
+.flexRow{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1%;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textWrapper{
+    text-align: center;
+}
+
+.textWrapper h2{
+    text-decoration: underline;
+}
+
+.ad{
+    text-align: center;
+    display: none;
+}
+
+.addSize{
+    width: 200px; 
+    height: auto;
+}
+
+.credits{
+    background-color: #8c6057;
+    text-align: center;
+}
+
+.socialMediaSeperator{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.siteMapLink{
+    padding: 5px;
+}
+
+
+.siteMapLink:hover{
+    background-color: #5c5346;
+    cursor: pointer;
+}
+
+.reportNTop{
+    position: fixed; 
+    bottom: 5%; 
+    right: 2%;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+}
+
+#backToTopBtn{
+    display: none; 
+    border: none; 
+    outline: none; 
+    background-color: #5c5346; 
+    color: white; 
+    cursor: pointer; 
+    padding: 15px; 
+    border-radius: 50%; 
+    font-size: 18px; 
+    margin: 25px;
+}
+
+#reportBugBTN{
+    display: none; 
+    border: none; 
+    outline: none; 
+    background-color: #5c5346; 
+    color: white; 
+    cursor: pointer; 
+    padding: 10px; 
+    border-radius: 10%; 
+    text-align: center;
+    font-size: 10px; 
+    margin: 0;
+}
+
+#backToTopBtn:hover, #reportBugBTN:hover {
+    background-color: #a69f98;
+}
+
+
+/********************column widths****************************/
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+
+/********************responsity media queries****************************/
+@media only screen and (max-width: 1400px) {
+    .topHeader div{
+        margin-right: 10rem;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .topHeader div{
+        margin-right: 2rem;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+
+    .topHeader{
+        background-image: none;
+        animation: none;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+    }
+
+    .topHeader div {
+        margin: auto;
+        background-color: rgba(166, 159, 152, 0.85);
+        
+    }
+
+    .topHeader div h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .topHeader div h1 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .navSection{
+        justify-content: center;
+    }
+
+    .flexRow{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .credits div{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ad{
+        text-align: center;
+        width: 80%;
+    }
+
+    .addSize{
+        width: auto; 
+        height:50px;
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    #navLinks{
+        text-align: center;
+        width: 100%;
+    }
+    #catNav{
+        text-align: center;
+        margin: auto;
+        width: 100%;
+    }
+    .navSection{
+        flex-direction: column;
+    }
+}
+
+
+@media only screen and (max-width: 400px) {
+    .credits div{
+        width:90%;
+    }
+}
+

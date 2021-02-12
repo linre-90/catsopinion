@@ -1,0 +1,98 @@
+
+
+#recaptchaWrapper div{
+   transform: scale(1);
+   transform-origin:0 0;
+}
+
+#subMitFormBtn{
+    padding: 10px 20px;
+}
+
+.marginBottom{
+    margin-bottom: 1rem;
+}
+
+.DIVStepOne{
+    display:inline-block; text-align: left;
+}
+.alignTop{
+    vertical-align: top;
+}
+
+textarea{
+    box-shadow: 1px 1px 5px #8c6057;
+    border: 2px solid #8c6057;
+}
+.submitDiv{
+    text-align: right; margin-left: auto;
+}
+
+.flex{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: flex-start;
+}
+
+input, select{
+    width:40%;
+    border-radius: 5px;
+    height: 2em;
+    box-shadow: 1px 1px 5px #8c6057;
+    border: 2px solid #8c6057;
+    font-family: "Lato", "sans-serif";
+}
+
+.firstContentRow{
+    background-color:#f0f2ef;
+    padding: 3%;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 5px 5px 15px black;
+}
+
+.formStyle input{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+@media only screen and (max-width: 1050px){
+     .DIVStepOne{
+         display: block;
+         width: 80%;
+         margin: auto;
+     }
+
+     .flex{
+         flex-direction: column;
+     }
+     .flex *{
+         margin: auto;
+     }
+     #resultSectionQuestion{
+        width: 65%;
+    }
+    #subMitFormBtn{
+        margin-top: 2rem;
+    }
+}
+@media only screen and (max-width: 800px){
+    #resultSectionQuestion{
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    #recaptchaWrapper div{
+        transform: scale(0.95);
+        transform-origin:0 0;
+     }
+}
+
+@media only screen and (max-width:490px){
+    #recaptchaWrapper div{
+        transform: scale(0.8);
+        transform-origin:0 0;
+     }
+}

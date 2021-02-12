@@ -1,0 +1,16 @@
+.explanationParagraph{
+    margin-left: 10%; 
+    margin-right: 10%;
+}
+
+
+.mainHeader{
+    text-decoration: underline; 
+    text-align: center;
+}
+
+blockquote{
+    text-align: right;
+    margin-right: 10%;
+}
+
