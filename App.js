@@ -4,14 +4,20 @@ const request = require("request");
 const dotenv = require("dotenv");
 const MongoClient = require("mongodb").MongoClient;
 const { ObjectID } = require("bson");
-//const fs = require("fs");
 const ejs = require("ejs").renderFile;
 const Keygrip = require("keygrip");
 const path = require("path");
 const rateLimit = require("express-rate-limit");
+const {logger, reqLogger} = require("./Logger");
 // non server stuff
 let Cat = require("./Cat");
 let DataModder = require("./DataModder");
+
+//dot env conf
+dotenv.config();
+
+// express node config stuff
+const app = express();
 
 // security
 const helmet = require("helmet");
@@ -32,6 +38,7 @@ const messageSchema = joi.object({
     message: joi.string().min(20).max(400).required().pattern(regex)
 });
 
+
 // middleware
 const GETLimiterMW = rateLimit({
     windowMs: 10 * 60 * 1000, //multiplayer*(millseconds to minutes)
@@ -44,14 +51,8 @@ const POSTLimiterMW = rateLimit({
     max: 10,
     message: "You have made too many submits. Try again little later. Note this is server safety feature not user error! It is made to protect website from attacks."
 });
-
-//dot env conf
-dotenv.config();
-
-// express node config stuff
-const app = express();
-// app uses
 app.use(express.static("public"));
+
 app.use(hpp());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -116,7 +117,15 @@ app.use(cookieSession({
     }
 
 }));
-
+app.use((req, res, next) =>{
+    if(req.method == "GET"){
+        reqLogger.info({"method":req.method, "status": res.statusCode ,"ip":req.ip, "URL": req.url});
+    }
+    else if(req.method == "POST"){
+        reqLogger.info({"method":req.method, "status": res.statusCode ,"ip":req.ip, "URL": req.url});
+    }
+    next();
+});
 // set
 app.set("views", path.join(__dirname, "views"));
 app.set("html", path.join(__dirname, "html"));
@@ -128,22 +137,18 @@ const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParse
 
 // ******** routes ***********
 app.get("/privacyPolicy", GETLimiterMW, (req, res) => {
-    console.log("Privacy");
     res.sendFile("html/privacyPolicy.html",{root:__dirname});
 });
 
 app.get("/blog", GETLimiterMW, (req, res) => {
-    console.log("blog")
     res.sendFile("html/blog.html",{root:__dirname});
 });
 
 app.get("/funzone", GETLimiterMW, (req, res) => {
-    console.log("funzone")
     res.sendFile("html/funZone.html",{root:__dirname});
 });
 
 app.get("/blog/getPosts", GETLimiterMW, async (req, res) => {
-    console.log("getposts");
     const amount = req.query.quantity;
     let newestPosts = [];
     let index = 0; 
@@ -184,7 +189,6 @@ app.get("/blog/getPosts", GETLimiterMW, async (req, res) => {
 });
 
 app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
-    console.log("open post")
     const id = ObjectID(req.query.id);
     if(ObjectID.isValid(id)){
         try {
@@ -202,14 +206,11 @@ app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
 });
 
 app.post("/contact", POSTLimiterMW, async (req, res) => {
-    console.log("contact")
     const captchFromWeb = req.body["g-recaptcha-response"];
     const recaptcha_verification_url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_KEY}&response=${captchFromWeb}`;
     request.post(recaptcha_verification_url, async (err, response, body) =>{
         let responseObject = JSON.parse(response.body); 
-        if(err){
-            //console.log(err);
-        }
+        if(err){}
         else if(responseObject.success){
             const {error, value} = messageSchema.validate({headline:req.body.headLine, type: req.body.type, email: req.body.email, message: req.body.message}, {stripUnknown:true});
             if(!error){
@@ -230,21 +231,18 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
                     res.sendStatus(422);
             }
         }else{
-            console.log(responseObject.success);
             res.sendStatus(401)
         }
     });  
 });
 
 app.get("/contact", GETLimiterMW, (req, res) => {
-    console.log("openContact")
     const token = req.csrfToken();
     res.render("contact.html", {csrfToken: token});
 });
 
 // make call to openweather api
 app.get("/find", GETLimiterMW, async (req,response) => {
-    console.log("find")
     const cityName = req.query.town ;
     const {error, value} = townSchema.validate(cityName, {stripUnknown:true});
     let dataModder = new DataModder();
@@ -259,7 +257,6 @@ app.get("/find", GETLimiterMW, async (req,response) => {
                 response.json(body);
             }
             else{
-                
                 response.json(await getCatsAnalysis(dataModder.getrelevantData(res.body)))
             }
         });
@@ -270,7 +267,6 @@ app.get("/find", GETLimiterMW, async (req,response) => {
 
 // get home page
 app.get("/", GETLimiterMW, async (req, res) => {
-    console.log("home")
     res.cookie("user_lang", "EN",{secure:true, httpOnly:true, expires:new Date(Date.now() + 1 * 3600000)});
     res.sendFile("html/index.html", {root: __dirname});
 });
@@ -309,6 +305,6 @@ const getCatsAnalysis = async (dataObject) =>{
 }
 
 app.listen(process.env.PORT, () => {
-    console.log(`Example app listening at http://localhost:${process.env.PORT}`)
+    logger.info(`Server started and running on ${process.env.PORT}`)
 });
 
