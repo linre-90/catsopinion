@@ -14,3 +14,8 @@ blockquote{
     margin-right: 10%;
 }
 
+@media only screen and (max-width: 1400px) {
+    #wrapper{
+        width: 100%;
+    }
+}

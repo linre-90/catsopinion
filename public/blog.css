@@ -197,9 +197,7 @@
 
     #logo{
         display: none;
-    }
-        
-    
+    } 
 }
 
 @media only screen and (max-width: 1300px) {
@@ -209,7 +207,6 @@
 }
 
 @media only screen and (max-width: 1050px) {
-
     .topHeaderBlog{
         background-image: none;
         animation: none;
@@ -220,7 +217,7 @@
     .topHeaderBlog div {
         margin: auto;
         background-color: rgba(166, 159, 152, 0.85);
-        
+       width: 100%; 
     }
 
     .topHeaderBlog div h3 {
@@ -230,6 +227,10 @@
     .topHeaderBlog div h1 {
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    .postWrapperDiv{
+        width: 100%;
     }
 
     #card{
@@ -245,9 +246,19 @@
     #card{
         width: 90%;
         flex: none;
+        padding: 0;
     }
 
     .postWrapperDiv div{
+        width: 100%;
+    }
+
+    #asd{
+        margin: 0;
+        padding: 0;
+    }
+
+    .makeColumn{
         width: 100%;
     }
 
