@@ -324,12 +324,19 @@ a:hover{
     .navSection{
         flex-direction: column;
     }
+    .textWrapper{
+        width: 80%;
+    }
 }
 
 
 @media only screen and (max-width: 400px) {
     .credits div{
         width:90%;
+    }
+    
+    ul li a{
+       word-break: break-all; 
     }
 }
 

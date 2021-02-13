@@ -262,4 +262,12 @@
         width: 100%;
     }
 
+    #raisedPostTextWrapper{
+        width: 80%;
+    }
+    #raisedPostTextWrapper div{
+        width: 100%;
+        padding: 0;
+    }
+
 }
