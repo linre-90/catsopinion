@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title><%= metaData.title %></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="description" content=<%= metaData.metaDescription %>>
+    <!--Style & fonts-->
+    <% {cssStyles.forEach(element => { %>
+        <link rel="stylesheet" type="text/css" media="screen" href=<%= element %> /> 
+    <% });}%> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <!--"Carusel" images pre load-->
+    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1472491235688-bdc81a63246e.jpg">
+    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1511275539165-cc46b1ee89bf.jpg">
+    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1535696588143-945e1379f1b0.jpg">
+    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1547045662-e5a75e7238c2.jpg">
+    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1559624989-7b9303bd9792.jpg">
+    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1574158622682-e40e69881006.jpg">
+    <script data-ad-client="ca-pub-1550316830869386" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body>

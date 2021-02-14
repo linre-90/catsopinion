@@ -1,0 +1,33 @@
+<div class="navSection">
+    <div class="col-6" id="catNav">
+        <i class="fa fa-cat navIcon navLogo"></i>
+    </div>
+    <div class="col-6" id="navLinks">
+        <% if(home){ %>
+            <a href="/" class="navItemPagePointer">Main <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="/">Main></i></a>
+        <% }  %> 
+        <% if(blog){ %>
+            <a href="blog" class="navItemPagePointer">Blog <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="blog">Blog</a>
+        <% }  %> 
+        <% if(contact){ %>
+            <a href="contact" class="navItemPagePointer">Contact <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="contact">Contact</a>
+        <% }  %> 
+        <% if(funzone){ %>
+            <a href="funzone" class="navItemPagePointer">Fun zone <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="funzone">Fun zone</a>
+        <% }  %> 
+    </div>
+</div>
+<div class="topHeader">
+    <div>
+        <h1>Cats Opinion</h1>
+        <h3>The only opinion cat owners need!</h1>
+    </div>
+</div>

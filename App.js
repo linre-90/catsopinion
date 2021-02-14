@@ -4,7 +4,7 @@ const request = require("request");
 const dotenv = require("dotenv");
 const MongoClient = require("mongodb").MongoClient;
 const { ObjectID } = require("bson");
-const ejs = require("ejs").renderFile;
+const ejs = require("ejs");
 const Keygrip = require("keygrip");
 const path = require("path");
 const rateLimit = require("express-rate-limit");
@@ -12,6 +12,9 @@ const {logger, reqLogger} = require("./Logger");
 // non server stuff
 let Cat = require("./Cat");
 let DataModder = require("./DataModder");
+const {homeMeta, blogMeta, contactMeta, formSuccesfullMeta, funZoneMeta, privacyPolicyMeta} = require("./MetaStore");
+const {home, blog, contact, formSuccesfull, funZone, privacyPolicy} = require("./ScriptStore");
+const {homeCss, blogCss, contactCss, funzoneCss, privacyCss, formsuccesCss}= require("./CssStore");
 
 //dot env conf
 dotenv.config();
@@ -29,7 +32,6 @@ const joi = require("joi");
 const regex = /[^<>\/\":;$!'\;={}&]+$/;
 
 // joi schemas
-const testNumberSChema = joi.number().max(5);
 const townSchema = joi.string().min(5).pattern(regex);
 const messageSchema = joi.object({
     headline: joi.string().min(1).max(20).required().pattern(regex), 
@@ -128,63 +130,40 @@ app.use((req, res, next) =>{
 });
 // set
 app.set("views", path.join(__dirname, "views"));
-app.set("html", path.join(__dirname, "html"));
-app.engine("html", ejs);
-app.set("view engine", "html");
+app.set("view engine", "ejs");
 
 // mmongodb connection
 const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
 
 // ******** routes ***********
 app.get("/privacyPolicy", GETLimiterMW, (req, res) => {
-    res.sendFile("html/privacyPolicy.html",{root:__dirname});
-});
-
-app.get("/blog", GETLimiterMW, (req, res) => {
-    res.sendFile("html/blog.html",{root:__dirname});
+    res.render("pages/privacyPolicy");
 });
 
 app.get("/funzone", GETLimiterMW, (req, res) => {
-    res.sendFile("html/funZone.html",{root:__dirname});
+    res.render("html/funZone.html",{root:__dirname});
 });
 
-app.get("/blog/getPosts", GETLimiterMW, async (req, res) => {
-    const amount = req.query.quantity;
-    let newestPosts = [];
-    let index = 0; 
-    const{error, result} = testNumberSChema.validate(amount, {stripUnknown:true}); 
-    if(!error && amount > 10){
-        try {
-            const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
-            await client.connect();
-            const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
-            collection.find().sort({year:-1, month:-1, day:-1}).forEach((data) => {
-                if(index == amount || index > amount){
-                    res.json(newestPosts);
-                    client.close();
-                }else{
-                    newestPosts.push(data);
-                    index++;
-                }
-            });
-        } finally {
-            await client.close();
-        }
-    }else if(!error){
-        try{
-            const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
-            await client.connect();
-            const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
-            collection.find({}).toArray((err, data) => {
-                res.json(data);
-                client.close();
-            });
-        } finally {
-            await client.close();
-        }
-    }
-    else{
-        res.sendStatus(500);
+app.get("/blog", GETLimiterMW, async (req, res) => {
+    try {
+        const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
+        await client.connect();
+        const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
+        collection.find({}).sort({year:-1, month:-1, day:-1}).toArray((err,data) => {
+            let newestFive = data.slice(0, 5)
+            console.log(newestFive);
+            res.render("pages/blog.ejs", {
+                meta:blogMeta, 
+                scriptArray: blog, 
+                homePage:false, 
+                contactPAge:false, 
+                blogPage:true, 
+                funzonePage:false, 
+                posts:newestFive, 
+                style:blogCss});
+        });
+    } finally {
+        await client.close();
     }
 });
 
@@ -268,7 +247,14 @@ app.get("/find", GETLimiterMW, async (req,response) => {
 // get home page
 app.get("/", GETLimiterMW, async (req, res) => {
     res.cookie("user_lang", "EN",{secure:true, httpOnly:true, expires:new Date(Date.now() + 1 * 3600000)});
-    res.sendFile("html/index.html", {root: __dirname});
+    res.render("pages/home.ejs", {
+        meta:homeMeta, 
+        scriptArray: home, 
+        homePage:true, 
+        contactPAge:false, 
+        blogPage:false, 
+        funzonePage:false, 
+        style:homeCss});
 });
 
 const getCatsAnalysis = async (dataObject) =>{

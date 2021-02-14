@@ -4,27 +4,109 @@
     <!--Todo recapcha and adsense-->
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>CatsOpinion - Your contact form is received! </title>
-    <meta name="description" content="This verifyes that your contact form was succesfully received"> 
+    <title>CatsOpinion - Ask from the cat or cats owner, give other feedback or report a bug!</title>
+    <meta name="description" content="Leave a comment or question for the blogger. File bug report or contact page developer. If you have idea share it with us!">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <!--Style & fonts-->
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='contact.css'>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script data-ad-client="ca-pub-1550316830869386" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
+    <div class="navSection">
+        <div class="col-6" id="catNav">
+            <i class="fa fa-cat navIcon" style="font-size: 4rem; margin-right: -2rem;"></i>
+        </div>
+        <div  class="col-6" id="navLinks">
+            <a href="/">Main</a>
+            <a href="blog" >Blog</a>
+            <a class="navItemPagePointer" href="contact">Contact  <i class="fas fa-check-circle"></i></a>
+            <a href="funzone">Fun zone</a>
+        </div>
+    </div>
     <div class="topHeader" >
         <div>
             <h1>Cats Opinion</h1>
             <h3>The only opinion cat owners need!</h1>
         </div>
     </div>
-    <div class="flexRow col-12">
-        <h1>Thanks for your feed back!</h1>
-        <h3><a href="/"> Back to front page</a></h3>
+
+    <!--Content-->
+    <div class="flexRow">
+        <h1 style="text-align: center;" class="col-12"> Contact</h1>
     </div>
+    <div class="flexRow">
+        <h3 style="text-align: center;" class="col-12"> Send questions for vilma or other feedback about web site. Also you can rebort bugs broken links etc. </h3>
+    </div>
+    <div class="flexRow">
+        <div class="firstContentRow col-6" id="resultSectionQuestion">
+            <form action="contact" method="POST">
+                <input type="hidden" name="_csrf" value=<%=csrfToken%> >
+                <div class="marginBottom">
+                    <p>* marked items are required</p>
+                    <div class="col-5 DIVStepOne">
+                        <label for="headline">Headline: *</label>
+                    </div>
+                    <div class="col-5 DIVStepOne">
+                        <input name="headLine" class="col-12" id="headline" type="text" maxlength="20" placeholder="max length 20 char" required>  
+                    </div>
+                </div>
+                <div class="marginBottom">
+                    <div class="col-5 DIVStepOne">
+                        <label for="type">Type of feedback: *</label>
+                    </div>
+                    <div class="col-5 DIVStepOne">
+                        <select name="type" class="col-12" name="" id="type" required>
+                            <option disabled selected value="">-- select a type</option>
+                            <option value="bug">Bug report</option>
+                            <option value="question">Question</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="marginBottom">
+                    <div class="col-5 DIVStepOne" >
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="col-5 DIVStepOne" >
+                        <input name="email" class="col-12" id="email" type="email" maxlength="254" placeholder="fill only if you want response">  
+                    </div>
+                </div>
+                <div class="marginBottom">
+                    <div class="col-5 DIVStepOne alignTop" >
+                        <label  for="message">Your message: *</label>
+                    </div>
+                    <div class="col-5 DIVStepOne">
+                        <textarea name="message" style="resize: none;" class="col-12" id="message" type="text" minlength="20" maxlength="400" rows="10"  required></textarea>
+                    </div>
+                </div>
+                <div class="col-11 flex">
+                    <div id="recaptchaWrapper" class="col-5">
+                        <div class="g-recaptcha" data-sitekey="6LdnylQaAAAAANz38pkiwOYPOI31FeMAWPiHfMVh"></div>
+                    </div>
+                    <div class="col-4 submitDiv" >
+                        <button id="subMitFormBtn" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+        <div class="ad col-3">
+            <p style="font-style: italic;">ad place holder</p>
+            <img class="addSize" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80" alt="">
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--Foooter-->
     <div class="credits flexRow">
         <div class="col-4">
             <div >
@@ -59,7 +141,7 @@
             <div>
                 <p>Images from unsplash: <a href="https://unsplash.com/images/stock">https://unsplash.com/images/stock</a></p>
                 <p>Check following persons work: </p>
-                <ul>
+                <ul style="list-style: none;">
                     <li><a href="https://unsplash.com/@cedric_photography">https://unsplash.com/@cedric_photography</a></li>
                     <li><a href="https://unsplash.com/@madeyes">https://unsplash.com/@madeyes</a></li>
                     <li><a href="https://unsplash.com/@miklevasilyev">https://unsplash.com/@miklevasilyev</a></li>
@@ -72,10 +154,10 @@
     </div>
     <div class=reportNTop>
         <button id="backToTopBtn"><i class="fa fa-arrow-up"></i></button>
-        <a href="contact" id="reportBugBTN"><i class="fa fa-exclamation-triangle"></i><p >REPORT A BUG</p></a>
+        <a href="contact" id="reportBugBTN"><i class="fa fa-exclamation-triangle"></i><p style="font-size: 10px; padding: 0; margin: 0;">REPORT A BUG</p></a>
     </div>
     <!--SCripts-->
-    <script src="scrollNbackTopBtn.js"></script>
+    <script src='scrollNbackTopBtn.js'></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?theme=flying&thirdparty=1&always=1&privacyPage=https%3A%2F%2Fwww.catsopinion.com%2FprivacyPolicy"></script>
 </body>
 </html>

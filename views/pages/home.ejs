@@ -1,0 +1,56 @@
+<%- include("../partials/htmlBoiler.ejs", {metaData: meta, cssStyles:style}) %>
+<%- include("../partials/header.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}) %> 
+<div class="flexRow content">
+    <%- include("../partials/ad.ejs") %>
+        <div class="col-6 textWrapper">
+            <h2>Take good care off your cat!</h2>
+            <p>
+                Cats are wonderfull creatures that get overlooked often.
+                <br>
+                Every cat deserves good home and decent family.
+                <br>
+                <br>
+                I am Vilma girl cat from Finland/South Ostrobothnia.
+                <br>
+                Check content below and remember to visit my blog.
+                <br>
+                On my blog i (well actually, i tell my human slave what to write)
+                <br>
+                write about everyday cat stuff.
+                <br>
+                <br>
+                Please excuse any language errors, i am cat after all...
+            </p>
+            <h4>Feel free to contact me or my human at contact page.</h4>
+            <h4>Below is few links if you want to learn more about cats.</h4>
+            <h4>- Vilma - <i class="fas fa-paw"></i></h4>
+            <h3>In finnish<img class="imgIcon" alt="Finland flag"
+                    src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/finland.png" /></h3>
+            <ul>
+                <li>
+                    <span><i class="fa fa-laptop"></i></span>
+                    <a href="https://www.elaintieto.fi/kissa/">https://www.elaintieto.fi/kissa/</a>
+                </li>
+                <li>
+                    <span><i class="fa fa-laptop"></i></span>
+                    <a href="https://sey.fi/kissa/">https://sey.fi/kissa/</a>
+                </li>
+            </ul>
+            <h3>In english<img class="imgIcon" alt="UK flag"
+                    src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/united-kingdom.png" />
+            </h3>
+            <ul>
+                <li>
+                    <span><i class="fa fa-laptop"></i></span>
+                    <a href="https://www.purina.com/articles/cat">https://www.purina.com/articles/cat</a>
+                </li>
+                <li>
+                    <span><i class="fa fa-laptop"></i></span>
+                    <a
+                        href="https://icatcare.org/advice/thinking-of-getting-a-cat/">https://icatcare.org/advice/thinking-of-getting-a-cat/</a>
+                </li>
+            </ul>
+        </div>
+        <%- include("../partials/ad.ejs") %>
+</div>
+<%- include("../partials/footer.ejs", {scripts: scriptArray}); %>

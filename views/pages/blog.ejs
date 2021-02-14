@@ -1,0 +1,84 @@
+<%- include("../partials/htmlBoiler.ejs", {metaData: meta, cssStyles:style}) %>
+<!--backdrop element-->
+<div class="fullBackdrop" id="backdrop"></div>
+<div class="raisePost" id="raisedPost">
+    <div id="raisedPostNavLinks" class="col-10">
+        <p class="loadinGIcon" id="waitpostResponse"><i class="fas fa-spinner"></i></p>
+    </div>
+    <div id="raisedPostcontentWrapper" class="flexRow col-12">
+        <img alt="blog post related image" class="col-4" id="blogsImage">
+        <div id="raisedPostTextWrapper" class="flexRow col-8">
+            <div class="col-12">
+                <h1 id="raisedPostheadline"></h1>
+                <p id="raisedPostText"></p>
+                <p id="raisedPostTimeStamp"></p>
+            </div>
+        </div>
+    </div>
+    <div id="raisedPostcontentWrapper" class="flexRow col-12">
+        <a class="copyLink" id="closeRaisedPost">Close</a>
+    </div>
+</div>
+<!--custom header-->
+<div class="navSection">
+    <div class="col-6" id="catNav">
+        <i class="fa fa-cat navIcon navLogo"></i>
+    </div>
+    <div class="col-6" id="navLinks">
+        <a href="/">Main</a>
+        <a class="navItemPagePointer">Blog <i class="fas fa-check-circle"></i></a>
+        <a href="contact">Contact</a>
+        <a href="funzone">Fun zone</a>
+    </div>
+</div>
+<div class="topHeaderBlog">
+    <div class="col-6 wrapper">
+        <div class="flexRow card" id="card">
+            <img src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/profile_img.jpg"
+                alt="Cats profile image">
+            <div id="asd" class="card makeColumn">
+                <h3 id="headline">The author: Vilma</h3>
+                <p class="textHeader"> <i>Who am i?</i></p>
+                <p class="cardText">I am female cat from finland. I live in small town where population is somewhere
+                    around 5 576. I'm born somewhere around 2018 and i celebrate my birthday on my calendar name day may
+                    26. </p>
+                <p class="textHeader"> <i>How does cat write blog?</i></p>
+                <p class="cardText">I have handy human helper, who needed place to show of web dev skills so win win...
+                </p>
+                <p class="textHeader"> <i>What's blog about?</i></p>
+                <p class="cardText">Everyday cat stuff like sleeping or squirrel chasing, what ever pops to mind.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 wrapper" id="logo">
+        <h1>Cats Opinion</h1>
+        <h3>The only opinion cat owners need!</h1>
+    </div>
+</div>
+<!--Content-->
+<div class="flexRow">
+    <h1 class="blogHeader" class="col-12"> The blog</h1>
+</div>
+<div class="flexRow content">
+    <%- include("../partials/ad.ejs") %>
+    <div id="blogPostsContainer" class="col-6">
+    <% posts.forEach(post => { %>
+        <div class="postWrapperDiv">
+            
+                <div class="col-4">
+                    <img src=<%= post.imageUrl %> width="200">
+                </div>
+                <div class="col-8">
+                    <h3 class="removeMarginTop"><%- post.title %></h3>
+                    <p class="textLeft"><%- post.text %></p>
+                </div>
+            <div class="openPostButtonDiv">
+                <a name="openPostLink" id=<%= "/blog/openpost?id="+post._id %> class="copyLink">Open post</a>
+                <p><%- post.year+"/"+post.month+"/"+post.day %></p>
+            </div>
+        </div>
+    <%  }); %> 
+    </div>
+    <%- include("../partials/ad.ejs") %>
+</div>
+<%- include("../partials/footer.ejs", {scripts: scriptArray}); %>
