@@ -91,32 +91,15 @@ a:hover{
 }
 
 .topHeader{
-    animation-name: change;
-    animation-duration: 30s;
-    animation-iteration-count: infinite;
     background-color: #8c6057;
     display: flex;
-    background-image: var(--img1);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-clip: border-box;
-    background-position: left;
-    padding-left: 5%;
+    padding-left: 1%;
     padding-right: 5%;
-    padding-top: 7%;
-    padding-bottom: 7%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     justify-content: flex-end;
     border-top: 5px solid black;
     border-bottom: 5px solid black;
-}
-
-@keyframes change{
-    0%{background-image: var(--img1);}
-    16.6%{background-image: var(--img2);}
-    33.2%{background-image: var(--img3);}
-    49.8%{background-image: var(--img4);}
-    66.4%{background-image: var(--img5);}
-    83%{background-image: var(--img6);}
 }
 
 .topHeader div{
@@ -126,6 +109,7 @@ a:hover{
     padding:1rem;
     border-radius: 15px;
     box-shadow: 2px 2px 10px #5c5346;
+    margin: auto auto auto 0;
 }
 
 .topHeader div h1{
@@ -137,7 +121,23 @@ a:hover{
     padding: 5px;
     font-size: 1.5em;
     margin-top: 60px;
-    
+}
+#imgCarousel{
+    background: none;
+    border: 0;
+    box-shadow: none;
+    width: 40%;
+    height: 100%;
+    margin-right: auto;
+}
+
+#carouselImage{
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 2%;
 }
 
 .flexRow{
@@ -199,6 +199,8 @@ a:hover{
     display: flex;
     flex-direction: column;
 }
+
+
 
 #backToTopBtn{
     display: none; 
@@ -263,6 +265,9 @@ a:hover{
 
 @media only screen and (max-width: 1050px) {
 
+    #imgCarousel{
+        display: none;
+    }
     .topHeader{
         background-image: none;
         animation: none;
