@@ -121,6 +121,15 @@ app.use(cookieSession({
     }
 
 }));
+app.use((req, res, next) =>{
+    if(req.method == "GET"){
+        reqLogger.info({"method":req.method, "status": res.statusCode ,"ip":req.ip, "URL": req.url});
+    }
+    else if(req.method == "POST"){
+        reqLogger.info({"method":req.method, "status": res.statusCode ,"ip":req.ip, "URL": req.url});
+    }
+    next();
+});
 app.use(function (err, req, res, next) {
     console.error(err.stack)
     res.status(500).send('Something broke!')
