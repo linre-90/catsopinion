@@ -151,7 +151,6 @@ app.get("/blog", GETLimiterMW, async (req, res) => {
         const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
         collection.find({}).sort({year:-1, month:-1, day:-1}).toArray((err,data) => {
             let newestFive = data.slice(0, 5)
-            console.log(newestFive);
             res.render("pages/blog.ejs", {
                 meta:blogMeta, 
                 scriptArray: blog, 
