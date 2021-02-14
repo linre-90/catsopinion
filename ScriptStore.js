@@ -4,7 +4,7 @@ const blog = ["scrollNbackTopBtn.js", "blogFiller.js"];
 
 const contact = ["scrollNbackTopBtn.js"];
 
-const formSuccesfull = ["scrollNbackTopBtn.js"];
+const formSuccesfull = [""];
 
 const funZone = ["scrollNbackTopBtn.js", "Main.js"];
 

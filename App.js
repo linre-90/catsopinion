@@ -128,6 +128,10 @@ app.use((req, res, next) =>{
     }
     next();
 });
+app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+  })
 // set
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -137,7 +141,15 @@ const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParse
 
 // ******** routes ***********
 app.get("/privacyPolicy", GETLimiterMW, (req, res) => {
-    res.render("pages/privacyPolicy");
+    res.render("pages/blog.ejs", {
+        meta:privacyPolicyMeta, 
+        scriptArray: privacyPolicy, 
+        homePage:false, 
+        contactPAge:false, 
+        blogPage:true, 
+        funzonePage:false, 
+        style:privacyCss
+    });
 });
 
 app.get("/funzone", GETLimiterMW, (req, res) => {
@@ -159,7 +171,8 @@ app.get("/blog", GETLimiterMW, async (req, res) => {
                 blogPage:true, 
                 funzonePage:false, 
                 posts:newestFive, 
-                style:blogCss});
+                style:blogCss
+            });
         });
     } finally {
         await client.close();
@@ -197,19 +210,16 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
                     await client.connect();
                     const collection = client.db(process.env.DATABASE).collection(process.env.CONTACTS_COLLECTION);
                     const message = {"headline":req.body.headLine, "type": req.body.type, "email": req.body.email, "message": req.body.message};
-                    collection.insertOne(message, (err, res) => {
-                        if (err) throw err;
-                    });
+                    collection.insertOne(message, (err, res) => { if (err) throw err;});
                 } finally {
                     await client.close();
                 }
-                res.sendFile("html/formSuccesfull.html",{root:__dirname});
-
-            }else{
-                    res.sendStatus(422);
+                res.render("pages/formSuccesfull.ejs", {
+                    meta:formSuccesfullMeta, 
+                    scriptArray: formSuccesfull, 
+                    style:formsuccesCss
+                });
             }
-        }else{
-            res.sendStatus(401)
         }
     });  
 });
@@ -235,18 +245,11 @@ app.get("/find", GETLimiterMW, async (req,response) => {
         const formattedName = dataModder.makePigGermanysaize(cityName);
         const apiAddres = `http://api.openweathermap.org/data/2.5/weather?q=${formattedName}&appid=${process.env.OPENWEATHER_APIKEY}&units=metric`;
         request(apiAddres, {json:true}, async (err, res, body) =>{
-            if(err){
-                response.sendStatus(500);
-            }
-            else if(body.cod == 404){
-                response.json(body);
-            }
+            if(err){ throw err}
             else{
                 response.json(await getCatsAnalysis(dataModder.getrelevantData(res.body)))
             }
         });
-    }else{
-        response.sendStatus(204);
     }
 });
 
