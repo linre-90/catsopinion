@@ -141,7 +141,7 @@ const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParse
 
 // ******** routes ***********
 app.get("/privacyPolicy", GETLimiterMW, (req, res) => {
-    res.render("pages/blog.ejs", {
+    res.render("pages/privacyPolicy.ejs", {
         meta:privacyPolicyMeta, 
         scriptArray: privacyPolicy, 
         homePage:false, 

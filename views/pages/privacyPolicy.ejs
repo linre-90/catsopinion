@@ -1,148 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!--Todo recapcha and adsense-->
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>CatsOpinion - Our feelings for reader privacy.</title>
-    <meta name="description" content="Catsopinion believes your privacy matters! Read our policy over here.">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!--Style & fonts-->
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='privacy.css'>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <!--"Carusel" images pre load-->
-    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1472491235688-bdc81a63246e.jpg">
-    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1511275539165-cc46b1ee89bf.jpg">
-    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1535696588143-945e1379f1b0.jpg">
-    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1547045662-e5a75e7238c2.jpg">
-    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1559624989-7b9303bd9792.jpg">
-    <link rel="preload" as="image" href="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1574158622682-e40e69881006.jpg">
-    <script data-ad-client="ca-pub-1550316830869386" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</head>
-<body>
-    <div class="navSection">
-        <div class="col-6" id="catNav">
-            <i class="fa fa-cat navIcon navLogo"></i>
-        </div>
-        <div class="col-6" id="navLinks">
-            <a href="/">Main</a>
-            <a href="blog">Blog</a>
-            <a href="contact">Contact</a>
-            <a href="funzone">Fun zone</a>
-        </div>
-    </div>
-    <div class="topHeader" >
-        <div>
-            <h1>Cats Opinion</h1>
-            <h3>The only opinion cat owners need!</h1>
-        </div>
-    </div>
+<%- include("../partials/htmlBoiler.ejs", {metaData: meta, cssStyles:style}) %>
+<%- include("../partials/header.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}) %> 
 
-
-    <!--Content-->
-    <div class="flexRow content">
-        <div  class="ad col-3">
-            <p style="font-style: italic;">ad place holder</p>
-            <img class="addSize" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80" alt="">
-        </div>
-        <div id="wrapper" class="col-6">
-            <h2 class="mainHeader">Our privacy and cookie policy!</h2>
-            <p class="explanationParagraph"><i>updated: 12.2.2021</i></p>
-            <h3>Cats opinion's virtual strategy</h3>
-            <p class="explanationParagraph">
-                Our policy is to offer user safe experience and respect their privacy. This is why we don't collect any unnecessary data. 
-                We will be very open and informative about anything we migth collect.<br><blockquote> -Website should be for user, user should not be data source!</blockquote> 
-            </p>
-            <h3>What user data we store?</h3>
-            <p class="explanationParagraph">
-                Cat cast <u>does not</u> collect or store any sensitive/personal user data! Cookie acceptance is mainly for 3rd party cookies.
-                This is stored in web browser, and it can be deleted at any time. CatsOpinion cookies do not save any user data. 
-            </p>
-            <h3>Users email addresses</h3>
-            <p class="explanationParagraph">
-                CatsOpinion <u>does not</u> store or distribute those email addresses to anyone. When user wants to be contacted and leaves email at contact page, email address is 
-                stored only as long is necessery to communicate. After that email address will be removed from our systems permanently and never seen again.
-            </p>
-            <h3>What 3rd party cookies we have?</h3>
-            <p class="explanationParagraph">
-                Facebooks cookie policy: <a href="https://www.facebook.com/policies/cookies"> can be found here</a><br>
-                Twitters cookie policy: <a href="https://help.twitter.com/en/rules-and-policies/twitter-cookies"> can be found here</a><br>
-                LinkedIn cookie policy: <a href="https://www.linkedin.com/legal/cookie-policy"> can be found here</a><br>
-                Googles cookie policy: <a href="https://policies.google.com/technologies/cookies?hl=en-US"> can be found here</a><br><br>
-                These are related to technologies used on website (share buttons, social media links, recaptcha). These servises are provided from "outside" and user must accept these to continue browsing.
-            </p>
-            <h3>But but but there is cats opinion cookies!</h3>
-            <p class="explanationParagraph">
-                Yes there is but they are about website functionality, security and to prevent hostile web actions. These <i>do not</i> track users personal data.
-            </p>
-            <h3>What is best type of cookie in world?</h3>
-            <p class="explanationParagraph">
-                Chocolate chip cookie!
-            </p>
-        </div>
-        <div class="ad col-3">
-            <p style="font-style: italic;">ad place holder</p>
-            <img class="addSize" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80" alt="">
-        </div>
+<!--Content-->
+<div class="flexRow content">
+    <% include("../partials/ad.ejs") %>
+    <div id="wrapper" class="col-6">
+        <h2 class="mainHeader">Our privacy and cookie policy!</h2>
+        <p class="explanationParagraph"><i>updated: 12.2.2021</i></p>
+        <h3>Cats opinion's virtual strategy</h3>
+        <p class="explanationParagraph">
+            Our policy is to offer user safe experience and respect their privacy. This is why we don't collect any
+            unnecessary data.
+            We will be very open and informative about anything we migth collect.<br>
+        <blockquote> -Website should be for user, user should not be data source!</blockquote>
+        </p>
+        <h3>What user data we store?</h3>
+        <p class="explanationParagraph">
+            Cat cast <u>does not</u> collect or store any sensitive/personal user data! Cookie acceptance is mainly for
+            3rd party cookies.
+            This is stored in web browser, and it can be deleted at any time. CatsOpinion cookies do not save any user
+            data.
+        </p>
+        <h3>Users email addresses</h3>
+        <p class="explanationParagraph">
+            CatsOpinion <u>does not</u> store or distribute those email addresses to anyone. When user wants to be
+            contacted and leaves email at contact page, email address is
+            stored only as long is necessery to communicate. After that email address will be removed from our systems
+            permanently and never seen again.
+        </p>
+        <h3>What 3rd party cookies we have?</h3>
+        <p class="explanationParagraph">
+            Facebooks cookie policy: <a href="https://www.facebook.com/policies/cookies"> can be found here</a><br>
+            Twitters cookie policy: <a href="https://help.twitter.com/en/rules-and-policies/twitter-cookies"> can be
+                found here</a><br>
+            LinkedIn cookie policy: <a href="https://www.linkedin.com/legal/cookie-policy"> can be found here</a><br>
+            Googles cookie policy: <a href="https://policies.google.com/technologies/cookies?hl=en-US"> can be found
+                here</a><br><br>
+            These are related to technologies used on website (share buttons, social media links, recaptcha). These
+            servises are provided from "outside" and user must accept these to continue browsing.
+        </p>
+        <h3>But but but there is cats opinion cookies!</h3>
+        <p class="explanationParagraph">
+            Yes there is but they are about website functionality, security and to prevent hostile web actions. These
+            <i>do not</i> track users personal data.
+        </p>
+        <h3>What is best type of cookie in world?</h3>
+        <p class="explanationParagraph">
+            Chocolate chip cookie!
+        </p>
     </div>
-
-
-    
-    <!--FOOTER-->
-    <div class="credits flexRow">
-        <div class="col-4">
-            <div >
-                <h4><i class="fa fa-sitemap"></i> Site map <i class="fa fa-sitemap"></i></h4>
-                <p><a class="siteMapLink" href="/">Main</a></p>
-                <p><a class="siteMapLink" href="blog">Blog</a></p>
-                <p><a class="siteMapLink" href="contact">Contact</a></p>
-                <p><a class="siteMapLink" href="funzone">Fun zone</a></p>
-                <p><a class="siteMapLink" href="">Privacy policy</a></p>
-                <p><a class="siteMapLink" href="https://github.com/linre-90/catsopinion">Github</a></p>
-            </div>
-            <div class="social">
-                <h4><i class="far fa-bell"></i> Share this page on social media! <i class="far fa-bell"></i></h4>
-               <!--Twitter some btn --> 
-               <a href="https://twitter.com/intent/tweet?button_hashtag=tweet&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-text="Hi! Check out this site!!!" data-url="https://catsopinion.com" data-show-count="false">Tweet #tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-               <div class="socialMediaSeperator"></div>
-               <!--Facebook some btn --> 
-               <div id="fb-root"></div>
-               <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v9.0" nonce="KPvERDBF"></script>
-               <div class="fb-share-button" data-href="https://catsopinion.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcatsopinion.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Jaa</a></div>
-               <br>
-               <div class="socialMediaSeperator"></div>
-               <!--Linked in some btn --> 
-               <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-               <script type="IN/Share" data-url="https://catsopinion.com/"></script>
-            </div>
-        </div>
-        <div class="col-4">
-            <p>All rights reserved Juho Lindemark</p>
-            <div>(country flag)Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-            <div>Other icons by FontAwesome: <a href="https://fontawesome.com/">https://fontawesome.com/</a></div>
-            <div>
-                <p>Images from unsplash: <a href="https://unsplash.com/images/stock">https://unsplash.com/images/stock</a></p>
-                <p>Check following persons work: </p>
-                <ul>
-                    <li><a href="https://unsplash.com/@cedric_photography">https://unsplash.com/@cedric_photography</a></li>
-                    <li><a href="https://unsplash.com/@madeyes">https://unsplash.com/@madeyes</a></li>
-                    <li><a href="https://unsplash.com/@miklevasilyev">https://unsplash.com/@miklevasilyev</a></li>
-                    <li><a href="https://unsplash.com/@serejaris">https://unsplash.com/@serejaris</a></li>
-                    <li><a href="https://unsplash.com/@_javardh_001">https://unsplash.com/@_javardh_001</a></li>
-                    <li><a href="https://unsplash.com/@zane404">https://unsplash.com/@zane404</a></li>
-                </ul>    
-            </div>
-        </div>   
-    </div>
-    <div class=reportNTop>
-        <button id="backToTopBtn"><i class="fa fa-arrow-up"></i></button>
-        <a href="contact" id="reportBugBTN"><i class="fa fa-exclamation-triangle"></i><p style="font-size: 10px; padding: 0; margin: 0;">REPORT A BUG</p></a>
-    </div>
-    <!--SCripts-->
-    <script src='scrollNbackTopBtn.js'></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?theme=flying&thirdparty=1&always=1&privacyPage=https%3A%2F%2Fwww.catsopinion.com%2FprivacyPolicy"></script>
-</body>
-</html>
+    <% include("../partials/ad.ejs") %>
+</div>
+<%- include("../partials/footer.ejs", {scripts: scriptArray}); %>
