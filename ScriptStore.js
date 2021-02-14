@@ -1,6 +1,6 @@
 const home = ["scrollNbackTopBtn.js", "slideShow.js"];
 
-const blog = ["scrollNbackTopBtn.js", "blogFiller.js", "slideShow.js"];
+const blog = ["scrollNbackTopBtn.js", "blogFiller.js"];
 
 const contact = ["scrollNbackTopBtn.js", "slideShow.js"];
 
