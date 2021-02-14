@@ -8,6 +8,6 @@ const formSuccesfull = [""];
 
 const funZone = ["scrollNbackTopBtn.js", "Main.js"];
 
-const privacyPolicy = ["privacyPolicy.js", "scrollNbackTopBtn.js"];
+const privacyPolicy = ["scrollNbackTopBtn.js"];
 
 module.exports = {home, blog, contact, formSuccesfull, funZone, privacyPolicy}

@@ -12,6 +12,7 @@ const {logger, reqLogger} = require("./Logger");
 // non server stuff
 let Cat = require("./Cat");
 let DataModder = require("./DataModder");
+// data stores
 const {homeMeta, blogMeta, contactMeta, formSuccesfullMeta, funZoneMeta, privacyPolicyMeta} = require("./MetaStore");
 const {home, blog, contact, formSuccesfull, funZone, privacyPolicy} = require("./ScriptStore");
 const {homeCss, blogCss, contactCss, funzoneCss, privacyCss, formsuccesCss}= require("./CssStore");
@@ -153,7 +154,15 @@ app.get("/privacyPolicy", GETLimiterMW, (req, res) => {
 });
 
 app.get("/funzone", GETLimiterMW, (req, res) => {
-    res.render("html/funZone.html",{root:__dirname});
+    res.render("pages/funZone.ejs", {
+        meta:funZoneMeta, 
+        scriptArray: funZone, 
+        homePage:false, 
+        contactPAge:false, 
+        blogPage:true, 
+        funzonePage:true, 
+        style:funzoneCss
+    });
 });
 
 app.get("/blog", GETLimiterMW, async (req, res) => {
@@ -179,6 +188,7 @@ app.get("/blog", GETLimiterMW, async (req, res) => {
     }
 });
 
+// Api route
 app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
     const id = ObjectID(req.query.id);
     if(ObjectID.isValid(id)){
@@ -236,7 +246,7 @@ app.get("/contact", GETLimiterMW, (req, res) => {
         csrfToken: req.csrfToken()});
 });
 
-// make call to openweather api
+// Api route
 app.get("/find", GETLimiterMW, async (req,response) => {
     const cityName = req.query.town ;
     const {error, value} = townSchema.validate(cityName, {stripUnknown:true});

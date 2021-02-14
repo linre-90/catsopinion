@@ -4,7 +4,7 @@ const homeMeta = {
 };
 
 const blogMeta = {
-    title: "CatsOpinion - Read cats opinion and day to day life happenings. Let the cat tell owner what is going.", 
+    title: "CatsOpinion - Read cats opinion and day to day life happenings. Let the cat tell owner what is going", 
     metaDescription: "Read how cat comes through a day. Learn some interesting facts about cats and watch out for product reviews"};
 
 const contactMeta = {
@@ -20,7 +20,7 @@ const funZoneMeta = {
     metaDescription: "Explore anything fun that developer migth have created! This site updates constantly so stay tuned for new content. Try new catsopinion weather app, weather app is constantly feeded new material try something new!"};
 
 const privacyPolicyMeta = {
-    title: "CatsOpinion - Our feelings for reader privacy.", 
+    title: "CatsOpinion - Our thougs of your privacy", 
     metaDescription: "Catsopinion believes privacy matters! Read our policy over here."};
 
 module.exports = {homeMeta, blogMeta, contactMeta, formSuccesfullMeta, funZoneMeta, privacyPolicyMeta};
