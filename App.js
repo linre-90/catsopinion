@@ -215,8 +215,15 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
 });
 
 app.get("/contact", GETLimiterMW, (req, res) => {
-    const token = req.csrfToken();
-    res.render("contact.html", {csrfToken: token});
+    res.render("pages/contact.ejs", {
+        meta:contactMeta, 
+        scriptArray: contact, 
+        homePage:false, 
+        contactPAge:true, 
+        blogPage:false, 
+        funzonePage:false, 
+        style:contactCss,
+        csrfToken: req.csrfToken()});
 });
 
 // make call to openweather api
