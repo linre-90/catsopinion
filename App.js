@@ -160,7 +160,7 @@ app.get("/funzone", GETLimiterMW, (req, res) => {
         scriptArray: funZone, 
         homePage:false, 
         contactPAge:false, 
-        blogPage:true, 
+        blogPage:false, 
         funzonePage:true, 
         style:funzoneCss
     });
@@ -198,7 +198,7 @@ app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
             await client.connect();
             const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
             collection.findOne({_id:id}, (err, document) => {
-                if(err) throw err;
+                if(err) next(err);
                 res.json(document);
             });
         } finally {
@@ -212,7 +212,7 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
     const recaptcha_verification_url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_KEY}&response=${captchFromWeb}`;
     request.post(recaptcha_verification_url, async (err, response, body) =>{
         let responseObject = JSON.parse(response.body); 
-        if(err){}
+        if(err){next(err)}
         else if(responseObject.success){
             const {error, value} = messageSchema.validate({headline:req.body.headLine, type: req.body.type, email: req.body.email, message: req.body.message}, {stripUnknown:true});
             if(!error){
@@ -256,7 +256,7 @@ app.get("/find", GETLimiterMW, async (req,response) => {
         const formattedName = dataModder.makePigGermanysaize(cityName);
         const apiAddres = `http://api.openweathermap.org/data/2.5/weather?q=${formattedName}&appid=${process.env.OPENWEATHER_APIKEY}&units=metric`;
         request(apiAddres, {json:true}, async (err, res, body) =>{
-            if(err){ throw err}
+            if(err){ next(err)}
             else{
                 response.json(await getCatsAnalysis(dataModder.getrelevantData(res.body)))
             }
