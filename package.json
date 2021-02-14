@@ -23,6 +23,7 @@
     "keygrip": "^1.1.0",
     "mongo-sanitize": "^1.1.0",
     "mongodb": "^3.6.4",
+    "newrelic": "^7.1.1",
     "path": "^0.12.7",
     "pino": "^6.11.1",
     "request": "^2.88.2"
@@ -39,6 +40,7 @@
     "@types/keygrip": "^1.0.2",
     "@types/mongo-sanitize": "^1.0.1",
     "@types/mongodb": "^3.6.6",
+    "@types/newrelic": "^7.0.0",
     "@types/pino": "^6.3.5",
     "@types/request": "^2.48.5"
   }

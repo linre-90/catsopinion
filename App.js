@@ -1,4 +1,5 @@
 // require
+require ('newrelic');
 const express = require("express");
 const request = require("request");
 const dotenv = require("dotenv");
@@ -120,15 +121,6 @@ app.use(cookieSession({
     }
 
 }));
-app.use((req, res, next) =>{
-    if(req.method == "GET"){
-        reqLogger.info({"method":req.method, "status": res.statusCode ,"ip":req.ip, "URL": req.url});
-    }
-    else if(req.method == "POST"){
-        reqLogger.info({"method":req.method, "status": res.statusCode ,"ip":req.ip, "URL": req.url});
-    }
-    next();
-});
 app.use(function (err, req, res, next) {
     console.error(err.stack)
     res.status(500).send('Something broke!')
@@ -310,6 +302,6 @@ const getCatsAnalysis = async (dataObject) =>{
 }
 
 app.listen(process.env.PORT, () => {
-    logger.info(`Server started and running on ${process.env.PORT}`)
+    console.log(`Server started and running`)
 });
 
