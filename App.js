@@ -78,7 +78,8 @@ app.use(helmet({
                 "https://adservice.google.fi",
                 "https://www.googletagservices.com",
                 "https://tpc.googlesyndication.com/",
-                "https://www.google.com"
+                "https://www.google.com",
+                "https://cdnjs.cloudflare.com"
         
             ],
             "img-src": [
@@ -103,7 +104,8 @@ app.use(helmet({
                 "https://www.googletagservices.com",
                 "https://tpc.googlesyndication.com/",
                 "https://www.google.com",
-                "https://www.gstatic.com/"
+                "https://www.gstatic.com/",
+                "https://cdnjs.cloudflare.com"
             ]
         }
 }}));

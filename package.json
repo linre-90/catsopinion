@@ -26,9 +26,11 @@
     "newrelic": "^7.1.1",
     "path": "^0.12.7",
     "pino": "^6.11.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "animejs": "^3.1.2"
   },
   "devDependencies": {
+    "@types/animejs": "^3.1.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cookie-session": "^2.0.42",
     "@types/csurf": "^1.11.0",
