@@ -1,7 +1,7 @@
 {
   "name": "catsopinion",
   "version": "0.1.0",
-  "description": "",
+  "description": "<h1>This is website project collaboration with my cat.</h1>\r <br>\r <br>\r <h3>Used tecnologies at the moment are</h3><br>\r  <i>mongoDB, express, nodejs, html, ejs, javascript</i>\r <br>\r <p> future plants include exploring vue.js for dynamic content but we will see...\r <br>\r <br>\r <h3>Project status</h3>\r <br>\r <p>Now technolies are some what in place, it is time to focus on content</p>\r <p>Issues are on issue page</p>\r <br>\r <br>\r <h2>If you find problem go to issues and create issue!</h2>",
   "main": "App.js",
   "scripts": {
     "start": "node App.js"
@@ -26,11 +26,9 @@
     "newrelic": "^7.1.1",
     "path": "^0.12.7",
     "pino": "^6.11.1",
-    "request": "^2.88.2",
-    "animejs": "^3.1.2"
+    "request": "^2.88.2"
   },
   "devDependencies": {
-    "@types/animejs": "^3.1.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cookie-session": "^2.0.42",
     "@types/csurf": "^1.11.0",
