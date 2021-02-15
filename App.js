@@ -34,7 +34,7 @@ const joi = require("joi");
 const regex = /[^<>\/\":;$!'\;={}&]+$/;
 
 // joi schemas
-const townSchema = joi.string().min(5).pattern(regex);
+const townSchema = joi.string().min(2).pattern(regex);
 const messageSchema = joi.object({
     headline: joi.string().min(1).max(20).required().pattern(regex), 
     type: joi.string().valid("bug", "question", "other").required().pattern(regex), 
@@ -255,14 +255,24 @@ app.get("/find", GETLimiterMW, async (req,response) => {
     const {error, value} = townSchema.validate(cityName, {stripUnknown:true});
     let dataModder = new DataModder();
     if(!error){
-        const formattedName = dataModder.makePigGermanysaize(cityName);
-        const apiAddres = `http://api.openweathermap.org/data/2.5/weather?q=${formattedName}&appid=${process.env.OPENWEATHER_APIKEY}&units=metric`;
-        request(apiAddres, {json:true}, async (err, res, body) =>{
-            if(err){ next(err)}
+        try {
+            const formattedName = dataModder.makePigGermanysaize(cityName);
+            const apiAddres = `http://api.openweathermap.org/data/2.5/weather?q=${formattedName}&appid=${process.env.OPENWEATHER_APIKEY}&units=metric`;
+            const answer=request(apiAddres, {json:true}, async (err, res, body) =>{
+            if(err){
+                next()
+            }else if(body.cod != 200){
+                response.sendStatus(400);
+            }
             else{
                 response.json(await getCatsAnalysis(dataModder.getrelevantData(res.body)))
             }
-        });
+        }).body;
+        } catch (error) {
+            next(error)
+        }
+    }else if(error){
+        response.sendStatus(400);
     }
 });
 

@@ -30,20 +30,14 @@ const onCheckWeatherClicked = async () => {
         let cityName = townInputField.value;
         let parsedString = cityName/*.replaceAll(/[^a-zA-Z\u0080-\uFFFF]/ig,"")*/;
         const response = await fetch(getWeather+parsedString).catch(console.dir);
-        const waitetResponse = await response.json().catch(console.warn);
         if(response.status !== 200){
             resetTexts();
-            updateText(resultField, "", "Something went wrong!");
-            weatherLoaderIcon.style.display = "none";
-            return;
-        }
-        else if(waitetResponse.cod == 404){
-            resetTexts();
-            updateText(resultField,"" ,waitetResponse.message);
+            updateText(resultField, "", "Something went wrong! Check town name. If error continues and you are sure town name is ok send bug report!");
             weatherLoaderIcon.style.display = "none";
             return;
         }
         else{
+            const waitetResponse = await response.json().catch(console.warn);
             //set texts and get info if cat wants to be outside!
             weatherLoaderIcon.style.display = "none";
             fillresultformTexts(waitetResponse);
