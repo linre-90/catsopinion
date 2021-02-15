@@ -281,6 +281,10 @@ a:hover{
     .topHeader div{
         margin-right: 2rem;
     }
+
+    .imgIcon{
+        width: 2rem;
+    }
 }
 
 @media only screen and (max-width: 1050px) {
@@ -293,6 +297,8 @@ a:hover{
         animation: none;
         padding-bottom: 2rem;
         padding-top: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     .topHeader div {
@@ -302,7 +308,7 @@ a:hover{
     }
 
     .topHeader div h3 {
-        margin-top: 0;
+        margin-top: 30px;
         margin-bottom: 0;
     }
     .topHeader div h1 {
@@ -334,6 +340,10 @@ a:hover{
         width: auto; 
         height:50px;
     }
+    .imgIcon{
+        width: 1.5rem;
+    }
+
 }
 
 @media only screen and (max-width: 680px) {
@@ -352,6 +362,10 @@ a:hover{
     .textWrapper{
         width: 80%;
     }
+    .imgIcon{
+        width: 1.5rem;
+    }
+    
 }
 
 
