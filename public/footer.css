@@ -1,3 +1,10 @@
+:root{
+    --backgroundColor: #EED6D3;
+    --highLigthColor: #E8B4B8;
+    --helperColor: #A49393;
+    --strongColor: #67595E;
+}
+
 .credits{
     background-color: #8c6057;
     text-align: center;

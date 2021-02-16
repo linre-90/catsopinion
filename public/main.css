@@ -1,16 +1,32 @@
 /*.ad currently display none, when url make add there*/
+:root{
+    --backgroundColor: #EED6D3;
+    --highLigthColor: #E8B4B8;
+    --helperColor: #A49393;
+    --strongColor: #67595E;
+}
+
+hr{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 50%;
+    border: 2px solid var(--strongColor);
+    border-radius: 2px;
+    opacity: 85%;
+}
 
 *{
     box-sizing: border-box;
 }
 
 body{
-    background-color: #afd5aa;
+    background-color: var(--backgroundColor);
     margin: 0;
 }
 
 h1, h2{
-    font-family: "dancing Script";
+    font-family: 'Oswald', sans-serif;
+    margin-top: 0;
 }
 
 h3, h4, p, label, a{
@@ -47,6 +63,8 @@ a:hover{
     display: flex;
     justify-content: space-evenly;
     padding: 1%;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .content{
@@ -86,15 +104,14 @@ a:hover{
     display: none; 
     border: none; 
     outline: none; 
-    background-color: #5c5346; 
-    color: white; 
+    background-color: var(--strongColor);
+    color: var(--highLigthColor); 
     cursor: pointer; 
     padding: 15px; 
     border-radius: 50%; 
     font-size: 18px; 
     margin: 25px;
 }
-
 
 #backToTopBtn:hover {
     background-color: #a69f98;
@@ -143,7 +160,6 @@ a:hover{
     .imgIcon{
         width: 1.5rem;
     }
-
 }
 
 @media only screen and (max-width: 680px) {
@@ -153,7 +169,9 @@ a:hover{
     .imgIcon{
         width: 1.5rem;
     }
-    
+    hr{
+        width: 80%;
+    }
 }
 
 
