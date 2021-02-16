@@ -1,0 +1,40 @@
+.credits{
+    background-color: #8c6057;
+    text-align: center;
+}
+
+.socialMediaSeperator{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.siteMapLink{
+    padding: 5px;
+}
+
+.siteMapLink:hover{
+    background-color: #5c5346;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 1050px) {
+
+    .credits div{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .credits div{
+        width:90%;
+    }
+    
+    ul li a{
+       word-break: break-all; 
+    }
+}
+

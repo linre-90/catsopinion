@@ -1,14 +1,5 @@
 /*.ad currently display none, when url make add there*/
 
-:root{
-    --img1: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1472491235688-bdc81a63246e.jpg);
-    --img2: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1511275539165-cc46b1ee89bf.jpg);
-    --img3: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1535696588143-945e1379f1b0.jpg);
-    --img4: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1547045662-e5a75e7238c2.jpg);
-    --img5: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1559624989-7b9303bd9792.jpg);
-    --img6: url(https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/photo-1574158622682-e40e69881006.jpg);
-}
-
 *{
     box-sizing: border-box;
 }
@@ -18,8 +9,7 @@ body{
     margin: 0;
 }
 
-
-h1,h2, .topHeader h3{
+h1, h2{
     font-family: "dancing Script";
 }
 
@@ -38,7 +28,6 @@ ul{
 
 .content ul li span{
     margin-right: 1em;
-
 }
 
 a{
@@ -53,112 +42,6 @@ a:hover{
     width: 3%;
     height: auto;
 }
-
-.navLogo{
-    font-size: 4rem; 
-    margin-right: -2rem;
-}
-
-
-.navSection{
-    background-color: #5c5346;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navSection a{
-    background-color:  #a69f98;
-    padding: 5px;
-    border-radius: 5px;
-    margin-right: 5px;
-    max-height: 2em;
-    text-decoration: none;
-}
-
-.navSection a:hover {
-    background-color: #8c6057;
-    cursor: pointer;
-}
-
-.navItemPagePointer{
-    font-weight: bold;
-}
-
-#navLinks, #catNav{
-    text-align: right;
-}
-
-.topHeader{
-    background-color: #8c6057;
-    display: flex;
-    padding-left: 1%;
-    padding-right: 5%;
-    padding-top: 0;
-    padding-bottom: 0;
-    justify-content: flex-end;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-}
-
-.topHeader div{
-    display: flex;
-    background-color: #a69f98;
-    margin-right: 20.5rem;
-    padding:1rem;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px #5c5346;
-    margin: auto auto auto 0;
-}
-
-.topHeader div h1{
-    padding: 5px;
-    font-size: 2.5em;
-}
-
-.topHeader div h3{
-    padding: 5px;
-    font-size: 1.5em;
-    margin-top: 60px;
-}
-#imgCarousel{
-    background: none;
-    border: 0;
-    box-shadow: none;
-    width: 40%;
-    height: 400px;
-    margin-right: auto;
-    overflow: hidden;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.carouselImage{
-    max-width: 100%;
-    max-height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: none;
-    object-fit: contain;
-}
-/* Fading animation */
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1s;
-    animation-name: fade;
-    animation-duration: 1s;
-  }
-  
-  @-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
-  
-  @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
 
 .flexRow{
     display: flex;
@@ -190,27 +73,6 @@ a:hover{
     height: auto;
 }
 
-.credits{
-    background-color: #8c6057;
-    text-align: center;
-}
-
-.socialMediaSeperator{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-
-.siteMapLink{
-    padding: 5px;
-}
-
-
-.siteMapLink:hover{
-    background-color: #5c5346;
-    cursor: pointer;
-}
-
 .reportNTop{
     position: fixed; 
     bottom: 5%; 
@@ -219,8 +81,6 @@ a:hover{
     display: flex;
     flex-direction: column;
 }
-
-
 
 #backToTopBtn{
     display: none; 
@@ -270,65 +130,18 @@ a:hover{
 .col-12 {width: 100%;}
 
 
-/********************responsity media queries****************************/
-@media only screen and (max-width: 1400px) {
-    .topHeader div{
-        margin-right: 10rem;
-    }
-}
 
 @media only screen and (max-width: 1300px) {
-    .topHeader div{
-        margin-right: 2rem;
-    }
-
     .imgIcon{
         width: 2rem;
     }
 }
 
 @media only screen and (max-width: 1050px) {
-
-    #imgCarousel{
-        display: none;
-    }
-    .topHeader{
-        background-image: none;
-        animation: none;
-        padding-bottom: 2rem;
-        padding-top: 2rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    .topHeader div {
-        margin: auto;
-        background-color: rgba(166, 159, 152, 0.85);
-        
-    }
-
-    .topHeader div h3 {
-        margin-top: 30px;
-        margin-bottom: 0;
-    }
-    .topHeader div h1 {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    .navSection{
-        justify-content: center;
-    }
-
     .flexRow{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-    
-    .credits div{
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     .ad{
@@ -347,18 +160,6 @@ a:hover{
 }
 
 @media only screen and (max-width: 680px) {
-    #navLinks{
-        text-align: center;
-        width: 100%;
-    }
-    #catNav{
-        text-align: center;
-        margin: auto;
-        width: 100%;
-    }
-    .navSection{
-        flex-direction: column;
-    }
     .textWrapper{
         width: 80%;
     }
@@ -368,14 +169,4 @@ a:hover{
     
 }
 
-
-@media only screen and (max-width: 400px) {
-    .credits div{
-        width:90%;
-    }
-    
-    ul li a{
-       word-break: break-all; 
-    }
-}
 

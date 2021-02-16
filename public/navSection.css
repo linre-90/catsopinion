@@ -1,0 +1,65 @@
+.navLogo{
+    font-size: 4rem; 
+    margin-right: -2rem;
+}
+
+.navSection{
+    background-color: #5c5346;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navSection a{
+    background-color:  #a69f98;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    max-height: 2em;
+    text-decoration: none;
+}
+
+.navSection a:hover {
+    background-color: #8c6057;
+    cursor: pointer;
+}
+
+.navItemPagePointer{
+    font-weight: bold;
+}
+
+#navLinks, #catNav{
+    text-align: right;
+}
+
+.flexRow{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1%;
+}
+
+
+@media only screen and (max-width: 1050px) {
+
+    .navSection{
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    #navLinks{
+        text-align: center;
+        width: 100%;
+    }
+    #catNav{
+        text-align: center;
+        margin: auto;
+        width: 100%;
+    }
+    .navSection{
+        flex-direction: column;
+    } 
+}
+
+
