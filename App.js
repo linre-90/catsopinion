@@ -200,7 +200,6 @@ app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
             await client.connect();
             const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
             collection.findOne({_id:id}, (err, document) => {
-                console.log(console.log(err));
                 if(err) next(err);
                 res.json(document);
             });

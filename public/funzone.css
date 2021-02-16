@@ -1,3 +1,10 @@
+:root{
+    --backgroundColor: #EED6D3;
+    --highLigthColor: #E8B4B8;
+    --helperColor: #A49393;
+    --strongColor: #67595E;
+}
+
 input{
     width:40%;
     border-radius: 5px;
@@ -8,7 +15,7 @@ input{
 }
 
 .firstContentRow{
-    background-color:#f0f2ef;
+    background-color: var(--helperColor);
     padding: 3%;
     border-radius: 20px;
     text-align: center;
@@ -26,6 +33,7 @@ input{
 
 .content{
     align-items: flex-start;
+    flex-grow: 0;
 }
 
 .mainheader{
@@ -39,15 +47,20 @@ input{
 
 .hide{
     display: none;
+    flex-grow: 0.000001;
 }
 
 #submitBTN{
-    background-color: #8c6057;
+    background-color: var(--highLigthColor);
     color: #f0f2ef;
     font-size: 2.5em;
     border-radius:50%;
     padding: 10px;
     border: 1px solid black;
+}
+
+#submitBTN i{
+   color: var(--helperColor);
 }
 
 #submitBTN:disabled{
@@ -65,6 +78,7 @@ input{
     animation-iteration-count: infinite;
     font-size: 2rem;
 }
+
 
 @keyframes loading{
     0%{transform: rotate(); }
@@ -92,6 +106,7 @@ input{
 @keyframes move{
     to{transform:translateX(-36.33%);}
 }
+
 .outAnimation{
     animation:moveIn;
     animation-duration: 0.25s;

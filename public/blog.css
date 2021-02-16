@@ -32,6 +32,19 @@
     overflow-y: scroll;
 }
 
+#logo img{
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    filter: sepia(0.2), hue-rotate(1);
+}
+
+#logo{
+    background-color: #E8B4B8;
+    justify-content: flex-end;
+}
+
+
 .removeMarginTop{
     margin-top: 0;
 }
@@ -78,62 +91,45 @@
 }
 
 .topHeaderBlog{
-    background-color: #8c6057;
+    background-color: var(--strongColor);
     display: flex;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-top: 3%;
-    padding-bottom: 3%;
     justify-content: flex-end;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
 }
 
 .topHeaderBlog .wrapper{
     display: flex;
-    background-color: #a69f98;
-    padding:1rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px #5c5346;
 }
 
 .card{
     display: flex;
-    padding:1rem;
     /*flex-direction: column;*/
 }
 
-.card img{
-    height:250px; width: auto;
-
-}
 
 .textHeader{
-    margin-bottom: 0;
+    font-size: 1.7rem;
+    color: var(--helperColor);
 }
 
-.cardText{margin-top: 0;margin-bottom: 0; margin-left: 2em;}
+.cardText{
+    margin-top: 0;
+    margin-bottom: 0; 
+    margin-left: 2em;
+    color: var(--backgroundColor);
+}
 
 .makeColumn{
     flex-direction: column;
 }
 
-.topHeaderBlog div h1{
-    padding: 5px;
-    font-size: 2.5em;
-}
-
-.topHeaderBlog div h3{
-    padding: 5px;
-    font-size: 1.5em;
-    margin-top: 60px;
-    
-}
 
 #headline{
-    margin-top: 0; margin-bottom: 0;padding: 5px; font-family: "dancing Script";
+    margin-top: 0; 
+    margin-bottom: 0;
+    padding: 5px;
+    font-size: 3rem; 
+    color: var(--highLigthColor);
+    letter-spacing: 5px;
 }
 
 .blogHeader{
@@ -221,7 +217,7 @@
         width: 80%;
     }
 
-    #logo{
+    #logo img{
         display: none;
     } 
 }
