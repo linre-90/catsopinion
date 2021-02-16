@@ -1,3 +1,10 @@
+:root{
+    --backgroundColor: #EED6D3;
+    --highLigthColor: #E8B4B8;
+    --helperColor: #A49393;
+    --strongColor: #67595E;
+}
+
 .fullBackdrop{
     display: none;
     position: fixed;
@@ -135,7 +142,10 @@
 }
 
 .postWrapperDiv{
-    background-color: #f0f2ef;
+    border: none;
+    color: none;
+    position: relative;
+    max-height: 250px;
     border-radius: 20px;
     padding: 2rem;
     display: flex;
@@ -144,7 +154,23 @@
     flex-wrap: wrap;
     margin-top: 20px;
     margin-bottom: 20px;
+    overflow: hidden;
+    background-color: var(--backgroundColor);
     
+}
+
+.shadow{
+    box-shadow: inset 0px -20px 10px  rgba(238, 214, 211, 0.85);
+    width: 110%;
+    height: 50px;
+    top: 200px;
+    left: -2rem;
+    position: absolute;
+}
+
+.postWrapperDiv:hover{
+    background-color:rgba(103,89,94,0.3);
+    cursor: pointer;
 }
 
 .openPostButtonDiv{

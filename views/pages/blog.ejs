@@ -46,27 +46,24 @@
     </div>
 </div>
 <!--Content-->
-<div class="flexRow">
-    <h1 class="blogHeader" class="col-12"> The blog</h1>
-</div>
+
 <div class="flexRow content">
     <%- include("../partials/ad.ejs") %>
     <div id="blogPostsContainer" class="col-6">
+    <hr>
     <% posts.forEach(post => { %>
-        <div class="postWrapperDiv">
-            
+        <button name="openPostLink" id=<%= "/blog/openpost?id="+post._id %> class="postWrapperDiv">
                 <div class="col-4">
                     <img src=<%= post.imageUrl %> width="200">
                 </div>
                 <div class="col-8">
                     <h3 class="removeMarginTop"><%- post.title %></h3>
+                    <p><%- post.year+"/"+post.month+"/"+post.day %></p>
                     <p class="textLeft"><%- post.text %></p>
                 </div>
-            <div class="openPostButtonDiv">
-                <a name="openPostLink" id=<%= "/blog/openpost?id="+post._id %> class="copyLink">Open post</a>
-                <p><%- post.year+"/"+post.month+"/"+post.day %></p>
-            </div>
-        </div>
+            <div class="shadow"></div>
+        </button>
+        <hr>
     <%  }); %> 
     </div>
     <%- include("../partials/ad.ejs") %>
