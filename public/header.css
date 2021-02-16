@@ -15,9 +15,9 @@
 .HeaderHeadline{
     font-family: 'Oswald', sans-serif;
     font-size: 8rem;
-    color: var(--backgroundColor);
+    color: var(--strongColor);
     position: absolute;
-    text-shadow: 1px 1px 10px black, -1px 1px 10px black, 1px -1px 10px black, -1px -1px 10px  black;
+    text-shadow: 1px 1px 5px var(--highLigthColor), -1px 1px 5px  var(--highLigthColor), 1px -1px 5px  var(--highLigthColor), -1px -1px 5px   var(--highLigthColor);
     bottom: 250px;
     left: 200px;
 }
@@ -26,9 +26,9 @@
     font-family: "Lato", "sans-serif";
     position: absolute;
     font-size: 4rem;
-    color: var(--backgroundColor);
+    color: var(--strongColor);
     position: absolute;
-    text-shadow: 1px 1px 10px black, -1px 1px 10px black, 1px -1px 10px black, -1px -1px 10px  black;
+    text-shadow: 1px 1px 5px var(--highLigthColor), -1px 1px 5px  var(--highLigthColor), 1px -1px 5px  var(--highLigthColor), -1px -1px 5px   var(--highLigthColor);
     bottom: 150px;
     left: 300px;
 }

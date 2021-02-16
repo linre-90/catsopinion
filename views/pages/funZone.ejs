@@ -1,5 +1,7 @@
 <%- include("../partials/htmlBoiler.ejs", {metaData: meta, cssStyles:style}) %>
-    <%- include("../partials/header.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}) %>
+<%- include("../partials/navBar.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}) %> 
+
+    <%- include("../partials/header.ejs") %>
         <!--Content-->
         <div class="flexRow">
             <h1 class="col-12 mainheader"> Fun stuff</h1>

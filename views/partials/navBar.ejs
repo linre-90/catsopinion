@@ -1,0 +1,31 @@
+<div class="navSection">
+    <div class="col-4" id="navLanguageSel">
+        <img class="langSelect" src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/finland.png" alt="Suomeksi" srcset="">
+        <img class="langSelect" src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/united-kingdom.png" alt="In english" srcset="">
+    </div>
+    <div class="col-4" id="catNav">
+        <img id="logoImage" src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/webProfileIMG.jpg" alt="Blogger's image as logo">
+    </div>
+    <div class="col-4" id="navLinks">
+        <% if(home){ %>
+            <a href="/" class="navItemPagePointer">Main <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="/">Main</a>
+        <% }  %> 
+        <% if(blog){ %>
+            <a href="blog" class="navItemPagePointer">Blog <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="blog">Blog</a>
+        <% }  %> 
+        <% if(contact){ %>
+            <a href="contact" class="navItemPagePointer">Contact <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="contact">Contact</a>
+        <% }  %> 
+        <% if(funzone){ %>
+            <a href="funzone" class="navItemPagePointer">Appz <i class="fas fa-check-circle"></i></a>
+        <%  } else{ %> 
+            <a href="funzone">Appz</a>
+        <% }  %> 
+    </div>
+</div>

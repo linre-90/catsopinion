@@ -20,17 +20,7 @@
     </div>
 </div>
 <!--custom header-->
-<div class="navSection">
-    <div class="col-6" id="catNav">
-        <i class="fa fa-cat navIcon navLogo"></i>
-    </div>
-    <div class="col-6" id="navLinks">
-        <a href="/">Main</a>
-        <a class="navItemPagePointer">Blog <i class="fas fa-check-circle"></i></a>
-        <a href="contact">Contact</a>
-        <a href="funzone">Fun zone</a>
-    </div>
-</div>
+<%- include("../partials/navBar.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}) %> 
 <div class="topHeaderBlog">
     <div class="col-6 wrapper">
         <div class="flexRow card" id="card">
