@@ -5,9 +5,14 @@
     --strongColor: #67595E;
 }
 
+.footerHR{
+    display: none;
+}
+
 .credits{
-    background-color: #8c6057;
+    background-color: var(--helperColor);
     text-align: center;
+    padding-bottom: 3rem;
 }
 
 .socialMediaSeperator{
@@ -24,14 +29,21 @@
     cursor: pointer;
 }
 
-
-
 @media only screen and (max-width: 1050px) {
-
     .credits div{
         width: 80%;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .footerHR{
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 80%;
+        border: 1px solid var(--strongColor);
+        border-radius: 1px;
+        opacity: 85%;
     }
 }
 

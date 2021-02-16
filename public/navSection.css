@@ -1,36 +1,67 @@
-.navLogo{
-    font-size: 4rem; 
-    margin-right: -2rem;
+:root{
+    --backgroundColor: #EED6D3;
+    --highLigthColor: #E8B4B8;
+    --helperColor: #A49393;
+    --strongColor: #67595E;
+}
+
+#logoImage{
+    height: 75px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.langSelect{
+    width: 2rem;
+    margin-left: 1rem;
+    /*Remove fowwolwing after translation*/
+    filter: grayscale(100%);
+}
+
+.langSelect:hover{
+    cursor: pointer;
+    /*remove after translation is complete*/
+    cursor: not-allowed;
 }
 
 .navSection{
-    background-color: #5c5346;
+    background-color: var(--backgroundColor);
     padding: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .navSection a{
-    background-color:  #a69f98;
-    padding: 5px;
-    border-radius: 5px;
-    margin-right: 5px;
-    max-height: 2em;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 50%;
+    padding-bottom: 50%;
     text-decoration: none;
+    color: var(--strongColor);
+    font-size: 1.25rem;
+    letter-spacing: 2px;
 }
 
 .navSection a:hover {
-    background-color: #8c6057;
+    background-color: var(--highLigthColor);
+    color: var(--strongColor);
     cursor: pointer;
 }
 
 .navItemPagePointer{
     font-weight: bold;
+    background-color: var(--highLigthColor);
 }
 
-#navLinks, #catNav{
+#navLinks{
     text-align: right;
+}
+#catNav{
+    text-align: center;
 }
 
 @media only screen and (max-width: 1050px) {
