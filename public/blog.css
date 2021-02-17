@@ -27,9 +27,10 @@
     left: 50%;
     top: 0%;
     transform: translate(-50%);
-    background-color: #afd5aa;
+    background-color: var(--helperColor);
     z-index: 101;
     overflow-y: scroll;
+    padding: 2%;
 }
 
 #logo img{
@@ -44,6 +45,9 @@
     justify-content: flex-end;
 }
 
+.centerText{
+    text-align: center;
+}
 
 .removeMarginTop{
     margin-top: 0;
@@ -56,28 +60,12 @@
 .textLeft{
     text-align: left;
 }
-#raisedPostcontentWrapper{
+#raisedPostcontentWrapper, #insertpost{
     justify-content: center;
 }
 
 #raisedPostTextWrapper{
     align-items: flex-start;
-}
-#raisedPostTextWrapper h1{
-    margin-top: 0;
-}
-
-#blogsImage{
-    object-fit: cover; height: 90%; padding: 1%;
-}
-
-#raisedPostTextWrapper div{
-    flex-direction: column;
-    padding-left: 2rem;
-}
-
-#raisedPostTextWrapper h1{
-    margin-top: 0;
 }
 
 #raisedPostNavLinks{
@@ -135,10 +123,6 @@ hr{
     letter-spacing: 5px;
 }
 
-.blogHeader{
-    text-align: center;
-
-}
 
 .postWrapperDiv{
     border: none;
@@ -182,6 +166,7 @@ hr{
     padding: 1rem;
     text-decoration: underline;
     font-style: italic;
+    font-size: 1.25rem;
 }
 
 #waitWeatherResponse, #waitpostResponse{
@@ -264,7 +249,7 @@ hr{
 }
 
 @media only screen and (max-width: 850px) {
-    img:not(#blogsImage){
+    img:not(.postImage){
         display: none;
     }
 

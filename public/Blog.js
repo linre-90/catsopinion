@@ -1,3 +1,10 @@
+const spinner = document.getElementById("waitpostResponse");
+const backdrop = document.getElementById("backdrop");
+const postView = document.getElementById("raisedPost");
+const closeBtn = document.getElementById("closeRaisedPost");
+const postInject =  document.getElementById("insertpost");
+
+
 const open = async (event) => {
     let postDataUrl;
     event.path.forEach(object => {
@@ -5,28 +12,23 @@ const open = async (event) => {
             postDataUrl = object.id.toString();
         }
     });
-    document.getElementById("waitpostResponse").style.display = "block";
-    document.getElementById("backdrop").style.display = "block";
-    document.getElementById("raisedPost").style.display = "block";   
+    spinner.style.display = "block";
+    backdrop.style.display = "block";
+    postView.style.display = "block";
     const response = await fetch(postDataUrl).catch(console.dir);
-    postResponse = await response.json();
-    document.getElementById("waitpostResponse").style.display = "none";
-    document.getElementById("blogsImage").src = postResponse.imageUrl;
-    document.getElementById("raisedPostheadline").textContent = postResponse.title;
-    document.getElementById("raisedPostText").innerHTML = postResponse.text;
-    document.getElementById("raisedPostTimeStamp").textContent =postResponse.day + "/" + postResponse.month + "/" + postResponse.year;
-    document.getElementById("closeRaisedPost").addEventListener("click", closeRaisedPOst);
+    const postResponse = await response.json();
+    spinner.style.display = "none";
+    postInject.insertAdjacentHTML("afterbegin",postResponse.view);
+    closeBtn.addEventListener("click", closeRaisedPOst);
 }
 
 const closeRaisedPOst = () =>{
     
-    document.getElementById("backdrop").style.display = "none";
-    document.getElementById("raisedPost").style.display = "none";
-    document.getElementById("waitpostResponse").style.display = "none";
-    document.getElementById("blogsImage").src = "";
-    document.getElementById("raisedPostheadline").textContent = "";
-    document.getElementById("raisedPostText").textContent = "";
-    document.getElementById("raisedPostTimeStamp").textContent ="";
+    backdrop.style.display = "none";
+    postView.style.display = "none";
+    spinner.style.display = "none";
+    postInject.innerHTML = "";
+
 }
 
 if(document.getElementsByName("openPostLink").length > 0){
