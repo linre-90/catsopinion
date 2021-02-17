@@ -3,37 +3,9 @@
 
 <%- include("../partials/header.ejs", {headerText: meta.headerText}) %> 
         <!--Content-->
-        <div class="flexRow">
-            <hr>
+        <hr class="col-10">
+        <div class="col-10 cardContainer">
+                <%- include("../partials/appCard.ejs", {name: "weatherApp", description:"Ask Vilma bot how she feels about weather! App also gives you usefull facts and of course weather opinion from vilma!", img:"https://images.unsplash.com/photo-1534794048419-48e110dca88e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=948&q=80", imgAlt:"Weather app image"}); %> 
         </div>
-        <!--
-        <div class="flexRow content">
-                <div class="firstContentRow col-3" id="resultSectionQuestion">
-                    <a id="minimizeWeather">minimize</a>
-                    <h3>Ask how Vilma feels about weather outside!</h3>
-                    <div id="form" class="formStyle">
-                        <label for="place">Write name of the town</label>
-                        <br />
-                        <input type="text" id="place" placeholder="Seinäjoki" required>
-                        <br />
-                        <button class="submitBTN" id="submitBTN" disabled><i class="fa fa-search-location"></i></button>
-                        <p id="waitWeatherResponse"><i class="fas fa-spinner"></i></p>
-                    </div>
-                </div>
-                <div class="firstContentRow col-3 hide" id="resultSection">
-                    <h3>Here is the weather</h3>
-                    <p class="paragraphHeader" id="result"></p>
-                    <p class="paragraphText" id="resultText"></p>
-                    <p class="paragraphHeader" id="humidityResult"></p>
-                    <p class="paragraphText" id="humidityResultText"></p>
-                    <p class="paragraphHeader" id="windResult"></p>
-                    <p class="paragraphText" id="windResultResultText"></p>
-                    <div>
-                        <h4 id=catverdict>
-                            </h5>
-                    </div>
-                </div>                
-        </div>
-        -->
-        <hr>
-        <%- include("../partials/footer.ejs", {scripts: scriptArray}); %>
+        <hr class="col-10">
+<%- include("../partials/footer.ejs", {scripts: scriptArray}); %>

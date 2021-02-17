@@ -35,7 +35,7 @@
 
 .carouselImage{
     height:650px;
-    width: 100%;
+    width: 110%;
     display: none;
     object-fit: cover;
     
@@ -79,7 +79,7 @@
 @media only screen and (max-width: 1130px) {
     .carouselImage{
         height:470px;
-        width: 100%;
+        width: 110%;
         display: none;
         object-fit: cover;
         opacity: 0;
@@ -111,6 +111,9 @@
         padding-bottom: 5%;
     }
 
+    .topHeader div{
+        margin-right: 0;
+    }
 
     #imgCarousel{
         display: none;

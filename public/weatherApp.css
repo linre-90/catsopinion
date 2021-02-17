@@ -1,3 +1,12 @@
+h1, h4{
+    font-family: 'Oswald', sans-serif;
+}
+
+p{
+    font-family: "Lato", "sans-serif";
+}
+
+
 .content{
     align-items: flex-start;
     flex-grow: 0;
@@ -137,6 +146,11 @@ input{
         width: 90%;
         margin: auto;
     }
+
+    .flexRow{
+        flex-direction: column;
+    }
+
 }
 
 
