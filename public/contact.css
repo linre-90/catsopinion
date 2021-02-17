@@ -35,8 +35,8 @@
 }
 
 textarea{
-    box-shadow: 1px 1px 5px #8c6057;
-    border: 2px solid #8c6057;
+    box-shadow: 1px 1px 5px var(--strongColor);
+    border: 2px solid var(--strongColor);
 }
 .submitDiv{
     text-align: right; margin-left: auto;
@@ -53,8 +53,8 @@ input, select{
     width:40%;
     border-radius: 5px;
     height: 2em;
-    box-shadow: 1px 1px 5px #8c6057;
-    border: 2px solid #8c6057;
+    box-shadow: 1px 1px 5px var(--strongColor);
+    border: 2px solid var(--strongColor);
     font-family: "Lato", "sans-serif";
 }
 
