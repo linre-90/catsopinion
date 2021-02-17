@@ -288,6 +288,16 @@ app.get("/", GETLimiterMW, async (req, res) => {
         style:homeCss});
 });
 
+app.get("/openapp", GETLimiterMW, async (req, res) => {
+    const appName = req.query.app ;
+    const {error, value} = townSchema.validate(appName, {stripUnknown:true});
+    if(!error){
+        res.render("pages/appBackground.ejs", {app: appName});
+    }else{
+        res.sendStatus(400);
+    }  
+});
+
 const getCatsAnalysis = async (dataObject) =>{
     let cat = new Cat();
     const catsOpinion = cat.getWeatherOpinion(dataObject);

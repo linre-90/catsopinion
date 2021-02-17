@@ -1,4 +1,9 @@
-
+:root{
+    --backgroundColor: #EED6D3;
+    --highLigthColor: #E8B4B8;
+    --helperColor: #A49393;
+    --strongColor: #67595E;
+}
 
 #recaptchaWrapper div{
    transform: scale(1);
@@ -7,6 +12,15 @@
 
 #subMitFormBtn{
     padding: 10px 20px;
+    background-color: var(--helperColor);
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+#subMitFormBtn:hover{
+    padding: 10px 20px;
+    background-color: var(--highLigthColor)    
 }
 
 .marginBottom{
@@ -45,11 +59,9 @@ input, select{
 }
 
 .firstContentRow{
-    background-color:#f0f2ef;
-    padding: 3%;
-    border-radius: 20px;
+    background-color:none;
+    padding: 0%;
     text-align: center;
-    box-shadow: 5px 5px 15px black;
 }
 
 .formStyle input{

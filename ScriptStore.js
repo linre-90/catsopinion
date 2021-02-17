@@ -6,7 +6,7 @@ const contact = ["scrollNbackTopBtn.js", "slideShow.js"];
 
 const formSuccesfull = [""];
 
-const funZone = ["scrollNbackTopBtn.js", "Main.js", "slideShow.js"];
+const funZone = ["scrollNbackTopBtn.js", "slideShow.js"];
 
 const privacyPolicy = ["scrollNbackTopBtn.js", "slideShow.js"];
 

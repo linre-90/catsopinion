@@ -1,0 +1,142 @@
+.content{
+    align-items: flex-start;
+    flex-grow: 0;
+}
+.firstContentRow{
+    background-color: #A49393;
+    padding: 3%;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 5px 5px 15px black;
+    margin: 1rem;
+}
+
+a{
+    text-decoration: underline;   
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.flexRow{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.col-3 {width: 25%;}
+
+.formStyle input{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.hide{
+    display: none;
+    flex-grow: 0.000001;
+}
+
+.paragraphText{
+    font-style: italic;
+
+}
+.paragraphHeader{
+    font-weight: bold;
+}
+
+input{
+    width:40%;
+    border-radius: 5px;
+    height: 2em;
+    box-shadow: 1px 1px 5px #8c6057;
+    border: 2px solid #8c6057;
+    font-family: "Lato", "sans-serif";
+}
+
+#submitBTN{
+    background-color: #E8B4B8;
+    color: #f0f2ef;
+    font-size: 2.5em;
+    border-radius:50%;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+#submitBTN i{
+   color: var(--helperColor);
+}
+
+#submitBTN:disabled{
+    background-color: gray;
+}
+
+#submitBTN:hover{
+    cursor: pointer;
+}
+
+#waitWeatherResponse{
+    display:none;
+    animation: loading;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    font-size: 2rem;
+}
+
+
+
+@keyframes loading{
+    0%{transform: rotate(); }
+    100%{transform: rotate(1turn); }
+    
+}
+
+.showAnimation{
+    animation: show;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
+@keyframes show{
+    from{opacity: 0;}
+    to{opacity:1;}
+}
+
+.moveAnimation{
+    animation:move;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+@keyframes move{
+    to{transform:translateX(-36.33%);}
+}
+
+.outAnimation{
+    animation:moveIn;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+@keyframes moveIn{
+    to{transform:translateX(15%);}
+}
+
+/********************responsity media queries****************************/
+
+
+
+@media only screen and (max-width: 1050px) {
+    #resultSectionQuestion{
+        animation: none;
+    }
+
+    .firstContentRow{
+        width: 90%;
+        margin: auto;
+    }
+}
+
+
