@@ -150,7 +150,7 @@ app.get("/privacyPolicy", GETLimiterMW, (req, res) => {
         scriptArray: privacyPolicy, 
         homePage:false, 
         contactPAge:false, 
-        blogPage:true, 
+        blogPage:false, 
         funzonePage:false, 
         style:privacyCss
     });
@@ -278,7 +278,6 @@ app.get("/find", GETLimiterMW, async (req,response) => {
 
 // get home page
 app.get("/", GETLimiterMW, async (req, res) => {
-    res.cookie("user_lang", "EN",{secure:true, httpOnly:true, expires:new Date(Date.now() + 1 * 3600000)});
     res.render("pages/home.ejs", {
         meta:homeMeta, 
         scriptArray: home, 

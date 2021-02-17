@@ -46,7 +46,6 @@
 <!--Content-->
 
 <div class="flexRow content">
-    <%- include("../partials/ad.ejs") %>
     <div id="blogPostsContainer" class="col-6">
     <hr>
     <% posts.forEach(post => { %>
@@ -64,6 +63,5 @@
         <hr>
     <%  }); %> 
     </div>
-    <%- include("../partials/ad.ejs") %>
 </div>
 <%- include("../partials/footer.ejs", {scripts: scriptArray}); %>

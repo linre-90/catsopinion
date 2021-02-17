@@ -1,12 +1,11 @@
 <%- include("../partials/htmlBoiler.ejs", {metaData: meta, cssStyles:style}) %>
-<%- include("../partials/navBar.ejs"), {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage} %> 
-<%- include("../partials/header.ejs") %> 
+<%- include("../partials/navBar.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}); %> 
+<%- include("../partials/header.ejs", {headerText: meta.headerText}) %> 
 
 <!--Content-->
 <div class="flexRow content">
-    <% include("../partials/ad.ejs") %>
     <div id="wrapper" class="col-6">
-        <h2 class="mainHeader">Our privacy and cookie policy!</h2>
+        <hr>
         <p class="explanationParagraph"><i>updated: 12.2.2021</i></p>
         <h3>Cats opinion's virtual strategy</h3>
         <p class="explanationParagraph">
@@ -49,7 +48,7 @@
         <p class="explanationParagraph">
             Chocolate chip cookie!
         </p>
+        <hr>
     </div>
-    <% include("../partials/ad.ejs") %>
 </div>
 <%- include("../partials/footer.ejs", {scripts: scriptArray}); %>

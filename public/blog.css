@@ -105,6 +105,9 @@
     /*flex-direction: column;*/
 }
 
+hr{
+    width: 100%;
+}
 
 .textHeader{
     font-size: 1.7rem;

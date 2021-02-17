@@ -1,13 +1,12 @@
 <%- include("../partials/htmlBoiler.ejs", {metaData: meta, cssStyles:style}) %>
 <%- include("../partials/navBar.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}) %> 
 
-    <%- include("../partials/header.ejs") %>
+<%- include("../partials/header.ejs", {headerText: meta.headerText}) %> 
         <!--Content-->
         <div class="flexRow">
             <hr>
         </div>
         <div class="flexRow content">
-            <%- include("../partials/ad.ejs") %>
                 <div class="firstContentRow col-3" id="resultSectionQuestion">
                     <a id="minimizeWeather">minimize</a>
                     <h3>Ask how Vilma feels about weather outside!</h3>
@@ -32,9 +31,7 @@
                         <h4 id=catverdict>
                             </h5>
                     </div>
-                </div>
-                <%- include("../partials/ad.ejs") %>
-                
+                </div>                
         </div>
         <hr>
         <%- include("../partials/footer.ejs", {scripts: scriptArray}); %>

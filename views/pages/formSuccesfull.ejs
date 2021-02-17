@@ -7,12 +7,10 @@
         </div>
     </div>
     <!--content-->
-    <% include("../partials/ad.ejs") %>
         <div class="flexRow col-12">
             <h1>Thanks for your feed back!</h1>
             <h3><a href="/"> Back to front page</a></h3>
         </div>
-        <% include("../partials/ad.ejs") %>
         <% {scriptArray.forEach(element => { %>
             <script src=<%= element %>></script> 
         <% });}%> 

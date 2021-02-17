@@ -1,16 +1,12 @@
 <%- include("../partials/htmlBoiler.ejs", {metaData: meta, cssStyles:style}) %>
 <%- include("../partials/navBar.ejs", {home:homePage, contact:contactPAge, blog:blogPage, funzone:funzonePage}) %> 
-<%- include("../partials/header.ejs") %> 
+<%- include("../partials/header.ejs", {headerText: meta.headerText}) %> 
+
+<hr>
 <div class="flexRow">
-    <h1 style="text-align: center;" class="col-12"> Contact</h1>
-</div>
-<div class="flexRow">
-    <h3 style="text-align: center;" class="col-12"> Send questions for vilma or other feedback about web site. Also you
-        can rebort bugs broken links etc. </h3>
-</div>
-<div class="flexRow">
-    <% include("../partials/ad.ejs") %>
         <div class="firstContentRow col-6" id="resultSectionQuestion">
+            <h3 style="text-align: center;" class="col-12"> Send questions for vilma or other feedback about web site. Please
+                rebort bugs and broken links too! </h3>
             <form action="contact" method="POST">
                 <input type="hidden" name="_csrf" value=<%=csrfToken%> >
                 <div class="marginBottom">
@@ -64,6 +60,6 @@
                 </div>
             </form>
         </div>
-    <% include("../partials/ad.ejs") %>
 </div>
+<hr>
 <%- include("../partials/footer.ejs", {scripts: scriptArray}); %>
