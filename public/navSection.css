@@ -63,6 +63,22 @@
 }
 #catNav{
     text-align: center;
+} 
+
+#hamburgerDiv{
+    display: none;
+}
+
+@media only screen and (max-width: 1250px) {
+
+    #catNav{
+        width:16.66%
+    }
+
+    #navLanguageSel, #navLinks{
+        width: 41.66%;
+    }
+
 }
 
 @media only screen and (max-width: 1050px) {
@@ -72,19 +88,108 @@
     }
 }
 
-@media only screen and (max-width: 680px) {
-    #navLinks{
-        text-align: center;
-        width: 100%;
+@media only screen and (max-width: 980px) {
+    #navLanguageSel{
+        width: 20%;
     }
+
+    #navLinks{
+        width: 80%;
+    }
+
+    #logoImage{
+        display: none;
+    }
+    
+}
+
+
+@media only screen and (max-width: 680px) {
+
+   
+
+    .navSection{
+        display:flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        
+    }
+
+    #navLinks, #navLanguageSel{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    #navLanguageSel{
+        align-items: flex-end;
+    }
+
     #catNav{
         text-align: center;
         margin: auto;
         width: 100%;
     }
-    .navSection{
-        flex-direction: column;
-    } 
+
+    .langSelect{
+        margin-right: 30px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .navSection a {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        letter-spacing: 2px;
+    }
+
+    #hamburgerDiv{
+        display: block;
+        margin-bottom: 3rem;
+        margin-right: 30px;
+        margin-top: 2rem;
+    }
+
+    #hamburgerDiv i{
+        font-size: 3rem;
+    }
+
+    #navLanguageSel, #navLinks{
+        display: none;
+    }
 }
+
+@keyframes showMenu {
+    from {transform: scale(0); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+  
+  /* The element to apply the animation to */
+  .showMenuAnimation {
+    animation-name: showMenu;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes hideMenu {
+    from {transform: scale(1);opacity: 1;}
+    to {transform: scale(0);opacity: 0;}
+  }
+  
+  /* The element to apply the animation to */
+  .hideMenuAnimation {
+    animation-name: hideMenu;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    }
+
+
+
 
 

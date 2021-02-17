@@ -1,12 +1,15 @@
 <div class="navSection">
-    <div class="col-4" id="navLanguageSel">
+    <div id="hamburgerDiv">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div name="menuitem" class="col-4" id="navLanguageSel">
         <img class="langSelect" src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/finland.png" alt="Suomeksi" srcset="">
         <img class="langSelect" src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/united-kingdom.png" alt="In english" srcset="">
     </div>
     <div class="col-4" id="catNav">
         <img id="logoImage" src="https://catcastimgs.s3.eu-north-1.amazonaws.com/staticimg/webProfileIMG.jpg" alt="Blogger's image as logo">
     </div>
-    <div class="col-4" id="navLinks">
+    <div name="menuitem" class="col-4" id="navLinks">
         <% if(home){ %>
             <a href="/" class="navItemPagePointer">Main <i class="fas fa-check-circle"></i></a>
         <%  } else{ %> 

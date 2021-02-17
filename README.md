@@ -9,7 +9,7 @@
 <br>
 <h3>Project status</h3>
 <br>
-<p>Now technolies are some what in place, it is time to focus on content</p>
+<p>Now technologies are some what in place, it is time to focus on content</p>
 <p>Issues are on issue page</p>
 <br>
 <br>
