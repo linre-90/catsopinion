@@ -10,6 +10,8 @@ const Keygrip = require("keygrip");
 const path = require("path");
 const rateLimit = require("express-rate-limit");
 const {logger, reqLogger} = require("./Logger");
+const { Pool, Client } = require('pg');
+const {getNewestPostsCards, getSinglePost, getCatsOpinionDatabase} = require("./queryStore"); 
 // non server stuff
 let Cat = require("./Cat");
 let DataModder = require("./DataModder");
@@ -21,6 +23,8 @@ const {homeCss, blogCss, contactCss, funzoneCss, privacyCss, formsuccesCss}= req
 //dot env conf
 dotenv.config();
 
+
+
 // express node config stuff
 const app = express();
 
@@ -31,9 +35,11 @@ const cookieParser = require("cookie-parser");
 const csurf = require("csurf");
 const cookieSession = require("cookie-session");
 const joi = require("joi");
+const { title } = require('process');
 const regex = /[^<>\/\":;$!'\;={}&]+$/;
 
 // joi schemas
+const number = joi.number();
 const townSchema = joi.string().min(2).pattern(regex);
 const messageSchema = joi.object({
     headline: joi.string().min(1).max(20).required().pattern(regex), 
@@ -41,6 +47,18 @@ const messageSchema = joi.object({
     email:joi.string().email().allow(null, "").pattern(regex), 
     message: joi.string().min(20).max(400).required().pattern(regex)
 });
+
+
+//sql 
+const pool = new Pool({connectionString:process.env.DATABASE_URL, ssl:{rejectUnauthorized:false}});
+
+pool.on('error', (err, client) => {
+    console.error('Unexpected error on idle client', err)
+    process.exit(-1)
+});
+
+
+
 
 
 // middleware
@@ -169,47 +187,36 @@ app.get("/funzone", GETLimiterMW, (req, res) => {
 });
 
 app.get("/blog", GETLimiterMW, async (req, res) => {
-    try {
-        const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
-        await client.connect();
-        const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
-        collection.find({}).sort({year:-1, month:-1, day:-1}).toArray((err,data) => {
-            let newestFive = data.slice(0, 5)
-            res.render("pages/blog.ejs", {
-                meta:blogMeta, 
-                scriptArray: blog, 
-                homePage:false, 
-                contactPAge:false, 
-                blogPage:true, 
-                funzonePage:false, 
-                posts:newestFive, 
-                style:blogCss
-            });
+    getNewestPostsCards(pool).then((data) => {
+        res.render("pages/blog.ejs", {
+            meta:blogMeta, 
+            scriptArray: blog, 
+            homePage:false, 
+            contactPAge:false, 
+            blogPage:true, 
+            funzonePage:false, 
+            posts:data, 
+            style:blogCss
         });
-    } finally {
-        await client.close();
-    }
+    }).catch(console.dir);
 });
 
 // Api route
 app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
-    const id = ObjectID(req.query.id);
-    if(ObjectID.isValid(id)){
-        try {
-            const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
-            await client.connect();
-            const collection = client.db(process.env.DATABASE).collection(process.env.BLOGPOSTINGS_COLLECTION);
-            collection.findOne({_id:id}, (err, document) => {
-                if(err) next(err);
-                res.json(document);
-            });
-        } finally {
-            await client.close();
-        }
+    console.log(req.query.id)
+    const {error, value} = number.validate(req.query.id, {stripUnknown:true});
+    if(!error){
+        getSinglePost(pool, req.query.id).then((data) => {
+            res.json(data);
+        });
+    }else{
+        res.sendStatus(500);
     }
 });
 
 app.post("/contact", POSTLimiterMW, async (req, res) => {
+    // TODO SEND EMAIL NODE MAILER TO @CATSOPINION.COM
+
     const captchFromWeb = req.body["g-recaptcha-response"];
     const recaptcha_verification_url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_KEY}&response=${captchFromWeb}`;
     request.post(recaptcha_verification_url, async (err, response, body) =>{
@@ -301,34 +308,32 @@ app.get("/openapp", GETLimiterMW, async (req, res) => {
 const getCatsAnalysis = async (dataObject) =>{
     let cat = new Cat();
     const catsOpinion = cat.getWeatherOpinion(dataObject);
-    try {
-        const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
-        await client.connect();
-        let collection = client.db(process.env.DATABASE).collection(process.env.INFO_COLLECTION);
-        await collection.find({title: {$in:[catsOpinion.tempQuery, catsOpinion.humidityQuery, catsOpinion.windQuery]}}, {}).forEach((data) => {
-           if(data.type == "temp"){
-                catsOpinion["tempMessage"] = data.message;
-           }else if(data.type == "wind"){
-                catsOpinion["windMessage"] = data.message;
-           }else if(data.type == "humidity"){
-                catsOpinion["humidityMessage"] = data.message;
-           }
-        });
-        let collection_selection;
-        if(catsOpinion.catWantsOut){
-            collection_selection = process.env.CATMESSAGES_GOOUT_COLLECTION;
-        }
-        else if(!catsOpinion.catWantsOut){
-            collection_selection = process.env.CATMESSAGES_STAYIN_COLLECTION;
-        }
-        collection = client.db(process.env.DATABASE).collection(collection_selection);
-        let dataModder = new DataModder();
-        let queryResult = await collection.findOne({aNumber: dataModder.makeRandom()}, {});
-        catsOpinion["catsVerdict"] = queryResult.message;
-    } finally {
-        await client.close();
+    let catMessageQuey = "";
+    if(catsOpinion.catWantsOut){
+        catMessageQuey = "go_out";
     }
-    return catsOpinion;
+    else{
+        catMessageQuey = "stay_in";
+    }
+    getCatsOpinionDatabase(pool, catsOpinion.tempQuery, catsOpinion.humidityQuery, catsOpinion.windQuery, catMessageQuey).then((data) => {
+        data.forEach(obj => {
+            console.log(obj.info_type);
+            if(obj.info_type == "cats_verdict"){
+                catsOpinion["catsVerdict"] = obj.catmessage;
+            }
+            else if(obj.info_type == "temp"){
+                catsOpinion["tempMessage"] = obj.message;
+            }
+            else if(obj.info_type == "wind"){
+                catsOpinion["windMessage"] = obj.message;
+            }
+            else if(obj.info_type == "humidity"){
+                catsOpinion["humidityMessage"] = obj.message;
+            }
+        });
+        console.log(catsOpinion)
+        return catsOpinion;
+    });
 }
 
 app.listen(process.env.PORT, () => {
