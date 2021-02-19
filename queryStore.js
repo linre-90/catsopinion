@@ -46,7 +46,6 @@ const getCatsOpinionDatabase = ( async (pool, temp, humidity, windspeed, catMess
     try {
         let weatherResponse = await client.query(weatherResquey);
         let catresponse = await client.query(catMessageQuery);
-        console.log(catresponse.rows);
         weatherResponse.rows.push(catresponse.rows[0])
         return weatherResponse.rows;
     } finally {

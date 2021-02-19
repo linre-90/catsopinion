@@ -90,6 +90,7 @@ const getDataFromServer= async (address) =>{
 }
 
 const fillresultformTexts = async (dataObject) =>{
+    console.log(dataObject);
     updateResults(resultField, resuldFieldExplanation, dataObject.temperature, dataObject.tempMessage);
     updateResults(humidyField, humidyFieldExplanation, dataObject.humidity, dataObject.humidityMessage);
     updateResults(windresult, windResultExplanation, dataObject.windSpeed, dataObject.windMessage);

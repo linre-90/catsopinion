@@ -203,7 +203,6 @@ app.get("/blog", GETLimiterMW, async (req, res) => {
 
 // Api route
 app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
-    console.log(req.query.id)
     const {error, value} = number.validate(req.query.id, {stripUnknown:true});
     if(!error){
         getSinglePost(pool, req.query.id).then((data) => {
@@ -272,7 +271,7 @@ app.get("/find", GETLimiterMW, async (req,response) => {
                 response.sendStatus(400);
             }
             else{
-                response.json(await getCatsAnalysis(dataModder.getrelevantData(res.body)))
+                response.json(await getCatsAnalysis(dataModder.getrelevantData(res.body)));
             }
         }).body;
         } catch (error) {
@@ -307,7 +306,7 @@ app.get("/openapp", GETLimiterMW, async (req, res) => {
 
 const getCatsAnalysis = async (dataObject) =>{
     let cat = new Cat();
-    const catsOpinion = cat.getWeatherOpinion(dataObject);
+    let catsOpinion = cat.getWeatherOpinion(dataObject);
     let catMessageQuey = "";
     if(catsOpinion.catWantsOut){
         catMessageQuey = "go_out";
@@ -315,25 +314,22 @@ const getCatsAnalysis = async (dataObject) =>{
     else{
         catMessageQuey = "stay_in";
     }
-    getCatsOpinionDatabase(pool, catsOpinion.tempQuery, catsOpinion.humidityQuery, catsOpinion.windQuery, catMessageQuey).then((data) => {
-        data.forEach(obj => {
-            console.log(obj.info_type);
-            if(obj.info_type == "cats_verdict"){
-                catsOpinion["catsVerdict"] = obj.catmessage;
-            }
-            else if(obj.info_type == "temp"){
-                catsOpinion["tempMessage"] = obj.message;
-            }
-            else if(obj.info_type == "wind"){
-                catsOpinion["windMessage"] = obj.message;
-            }
-            else if(obj.info_type == "humidity"){
-                catsOpinion["humidityMessage"] = obj.message;
-            }
-        });
-        console.log(catsOpinion)
-        return catsOpinion;
+    let objects = await getCatsOpinionDatabase(pool, catsOpinion.tempQuery, catsOpinion.humidityQuery, catsOpinion.windQuery, catMessageQuey);
+    objects.forEach(obj => {
+        if(obj.info_type == "cats_verdict"){
+            catsOpinion["catsVerdict"] = obj.catmessage;
+        }
+        else if(obj.info_type == "temp"){
+            catsOpinion["tempMessage"] = obj.message;
+        }
+        else if(obj.info_type == "wind"){
+            catsOpinion["windMessage"] = obj.message;
+        }
+        else if(obj.info_type == "humidity"){
+            catsOpinion["humidityMessage"] = obj.message;
+        }
     });
+    return catsOpinion;
 }
 
 app.listen(process.env.PORT, () => {
