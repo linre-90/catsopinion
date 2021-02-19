@@ -57,6 +57,31 @@ const getCatsOpinionDatabase = ( async (pool, temp, humidity, windspeed, catMess
 });
 
 
+const insertMessage =  async (pool, title, type, email, message) => {
+    let type_searched;
+    let getTypeQuery = {
+        text:"SELECT id FROM public.contact_types WHERE contact_type LIKE $1;",
+        values:[type]
+    }
+    const client = await pool.connect();
+    try {
+        let type = await client.query(getTypeQuery);
+        type_searched = type.rows[0].id;
+        let insertQuery = {
+            text:" INSERT INTO public.contact(id, title, type, email, message) VALUES (DEFAULT, $1, $2, $3, $4)" ,
+            values: [title, type_searched, email, message]
+        }
+        let insert = await client.query(insertQuery);
+        return insert;
+    } finally {
+        console.log("client released message");
+      // Make sure to release the client before any error handling,
+      // just in case the error handling itself throws an error.
+        client.release()
+    }
+
+
+}
 
 
 
@@ -65,5 +90,4 @@ const getCatsOpinionDatabase = ( async (pool, temp, humidity, windspeed, catMess
 
 
 
-
-module.exports = {getNewestPostsCards, getSinglePost, getCatsOpinionDatabase};
+module.exports = {getNewestPostsCards, getSinglePost,insertMessage ,getCatsOpinionDatabase};

@@ -3,7 +3,6 @@ require ('newrelic');
 const express = require("express");
 const request = require("request");
 const dotenv = require("dotenv");
-const MongoClient = require("mongodb").MongoClient;
 const { ObjectID } = require("bson");
 const ejs = require("ejs");
 const Keygrip = require("keygrip");
@@ -11,7 +10,7 @@ const path = require("path");
 const rateLimit = require("express-rate-limit");
 const {logger, reqLogger} = require("./Logger");
 const { Pool, Client } = require('pg');
-const {getNewestPostsCards, getSinglePost, getCatsOpinionDatabase} = require("./queryStore"); 
+const {getNewestPostsCards, getSinglePost, getCatsOpinionDatabase, insertMessage} = require("./queryStore"); 
 // non server stuff
 let Cat = require("./Cat");
 let DataModder = require("./DataModder");
@@ -36,18 +35,17 @@ const csurf = require("csurf");
 const cookieSession = require("cookie-session");
 const joi = require("joi");
 const { title } = require('process');
-const regex = /[^<>\/\":;$!'\;={}&]+$/;
+const regex = /[^<>\/\\":;\$!'\;=\{\}&\*]+$/;
 
 // joi schemas
 const number = joi.number();
 const townSchema = joi.string().min(2).pattern(regex);
 const messageSchema = joi.object({
-    headline: joi.string().min(1).max(20).required().pattern(regex), 
-    type: joi.string().valid("bug", "question", "other").required().pattern(regex), 
-    email:joi.string().email().allow(null, "").pattern(regex), 
-    message: joi.string().min(20).max(400).required().pattern(regex)
+    headline: joi.string().min(1).max(20).pattern(regex), 
+    type: joi.string().valid("bug", "question", "other"), 
+    email:joi.string().email().pattern(regex).allow(null, ""), 
+    message: joi.string().min(20).max(400).pattern(regex)
 });
-
 
 //sql 
 const pool = new Pool({connectionString:process.env.DATABASE_URL, ssl:{rejectUnauthorized:false}});
@@ -56,10 +54,6 @@ pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err)
     process.exit(-1)
 });
-
-
-
-
 
 // middleware
 const GETLimiterMW = rateLimit({
@@ -212,39 +206,35 @@ app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
 });
 
 app.post("/contact", POSTLimiterMW, async (req, res) => {
-    // TODO SEND EMAIL NODE MAILER TO @CATSOPINION.COM
 
     const captchFromWeb = req.body["g-recaptcha-response"];
     const recaptcha_verification_url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_KEY}&response=${captchFromWeb}`;
     request.post(recaptcha_verification_url, async (err, response, body) =>{
         let responseObject = JSON.parse(response.body); 
-        if(err){next(err)}
+        if(err){res.sendStatus(403)}
         else if(responseObject.success){
             const {error, value} = messageSchema.validate({headline:req.body.headLine, type: req.body.type, email: req.body.email, message: req.body.message}, {stripUnknown:true});
             if(!error){
-                // send email
-                try {
-                    const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
-                    await client.connect();
-                    const collection = client.db(process.env.DATABASE).collection(process.env.CONTACTS_COLLECTION);
-                    const message = {"headline":req.body.headLine, "type": req.body.type, "email": req.body.email, "message": req.body.message};
-                    collection.insertOne(message, (err, res) => { if (err) throw err;});
-                } finally {
-                    await client.close();
-                }
-
-                
+                console.log("sending to db")
+                let status = await insertMessage(pool, req.body.headLine, req.body.type, req.body.email,req.body.message);
+                console.log(status.rowCount);
                 res.render("pages/formSuccesfull.ejs", {
                     meta:formSuccesfullMeta, 
                     scriptArray: formSuccesfull, 
                     style:formsuccesCss
                 });
+            }else{
+                console.log("bad input")
+                res.sendStatus(403);
             }
+        }else{
+            console.log("bad captcha")
+            res.sendStatus(403);
         }
     });  
 });
 
-app.get("/contact", GETLimiterMW, (req, res) => {
+app.get("/contact", GETLimiterMW, async (req, res) => {
     res.render("pages/contact.ejs", {
         meta:contactMeta, 
         scriptArray: contact, 
@@ -263,6 +253,7 @@ app.get("/find", GETLimiterMW, async (req,response) => {
     let dataModder = new DataModder();
     if(!error){
         try {
+            //console.log("apiCall")
             const formattedName = dataModder.makePigGermanysaize(cityName);
             const apiAddres = `http://api.openweathermap.org/data/2.5/weather?q=${formattedName}&appid=${process.env.OPENWEATHER_APIKEY}&units=metric`;
             const answer=request(apiAddres, {json:true}, async (err, res, body) =>{
@@ -279,6 +270,7 @@ app.get("/find", GETLimiterMW, async (req,response) => {
             next(error)
         }
     }else if(error){
+        //console.log("bad string");
         response.sendStatus(400);
     }
 });
