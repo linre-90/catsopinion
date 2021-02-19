@@ -158,8 +158,6 @@ app.use(function (err, req, res, next) {
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// mmongodb connection
-const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
 
 // ******** routes ***********
 app.get("/privacyPolicy", GETLimiterMW, (req, res) => {
@@ -224,6 +222,7 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
         else if(responseObject.success){
             const {error, value} = messageSchema.validate({headline:req.body.headLine, type: req.body.type, email: req.body.email, message: req.body.message}, {stripUnknown:true});
             if(!error){
+                // send email
                 try {
                     const client = new MongoClient(process.env.MONGO_CONNECTION_URI, {useNewUrlParser:true, useUnifiedTopology:true});
                     await client.connect();
@@ -233,6 +232,8 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
                 } finally {
                     await client.close();
                 }
+
+                
                 res.render("pages/formSuccesfull.ejs", {
                     meta:formSuccesfullMeta, 
                     scriptArray: formSuccesfull, 
