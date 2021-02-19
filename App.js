@@ -3,7 +3,6 @@ require ('newrelic');
 const express = require("express");
 const request = require("request");
 const dotenv = require("dotenv");
-const { ObjectID } = require("bson");
 const ejs = require("ejs");
 const Keygrip = require("keygrip");
 const path = require("path");
@@ -21,8 +20,6 @@ const {homeCss, blogCss, contactCss, funzoneCss, privacyCss, formsuccesCss}= req
 
 //dot env conf
 dotenv.config();
-
-
 
 // express node config stuff
 const app = express();
