@@ -120,7 +120,9 @@ app.use(helmet({
             "frame-src":[
                 "https://giphy.com/",
                 "https://platform.twitter.com/",
-                "https://www.facebook.com/"
+                "https://www.facebook.com/",
+                "https://www.google.com/",
+                "https://syndication.twitter.com/"
             ]
         }
 }}));
