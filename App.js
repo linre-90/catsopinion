@@ -116,6 +116,11 @@ app.use(helmet({
                 "https://www.google.com",
                 "https://www.gstatic.com/",
                 "https://cdnjs.cloudflare.com"
+            ],
+            "frame-src":[
+                "https://giphy.com/",
+                "https://platform.twitter.com/",
+                "https://www.facebook.com/"
             ]
         }
 }}));
