@@ -9,6 +9,7 @@ const path = require("path");
 const rateLimit = require("express-rate-limit");
 const {logger, reqLogger} = require("./Logger");
 const { Pool, Client } = require('pg');
+const {sendNotification} = require("./Mail");
 const {getNewestPostsCards, getSinglePost, getCatsOpinionDatabase, insertMessage} = require("./queryStore"); 
 // non server stuff
 let Cat = require("./Cat");
@@ -45,7 +46,7 @@ const messageSchema = joi.object({
 });
 
 //sql 
-const pool = new Pool({connectionString:process.env.DATABASE_URL, ssl:{rejectUnauthorized:false}});
+const pool = new Pool({connectionString:process.env.DATABASE_URL, ssl:{rejectUnauthorized:false}, statement_timeout: 10000});
 
 pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err)
@@ -203,7 +204,6 @@ app.get("/blog/openpost", GETLimiterMW, async (req, res) => {
 });
 
 app.post("/contact", POSTLimiterMW, async (req, res) => {
-
     const captchFromWeb = req.body["g-recaptcha-response"];
     const recaptcha_verification_url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_KEY}&response=${captchFromWeb}`;
     request.post(recaptcha_verification_url, async (err, response, body) =>{
@@ -214,12 +214,17 @@ app.post("/contact", POSTLimiterMW, async (req, res) => {
             if(!error){
                 console.log("sending to db")
                 let status = await insertMessage(pool, req.body.headLine, req.body.type, req.body.email,req.body.message);
-                console.log(status.rowCount);
-                res.render("pages/formSuccesfull.ejs", {
-                    meta:formSuccesfullMeta, 
-                    scriptArray: formSuccesfull, 
-                    style:formsuccesCss
-                });
+                let mailStatus = await sendNotification().catch(console.dir);
+                if(status.rowCount > 0){
+                    res.render("pages/formSuccesfull.ejs", {
+                        meta:formSuccesfullMeta, 
+                        scriptArray: formSuccesfull, 
+                        style:formsuccesCss
+                    });
+                }else{
+                    res.sendStatus(500);
+                }
+                
             }else{
                 console.log("bad input")
                 res.sendStatus(403);
